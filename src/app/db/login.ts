@@ -7,25 +7,24 @@ const pool = mariadb.createPool({
   connectionLimit: 5,
 });
 
-async function asyncFunction() {
+async function login(username: string, password: string) {
   let conn;
   try {
     conn = await pool.getConnection();
 
-    const rows = await conn.query("SELECT 1 as val");
-    console.log(rows); //[ {val: 1}, meta: ... ]
-    const res = await conn.query("INSERT INTO myTable value (?, ?)", [
-      1,
-      "mariadb",
-    ]);
-    console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    const rows = await conn.query(
+      `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
+    );
+
+    console.log(rows);
   } catch (err) {
-    throw err;
+    console.error(`Login error: ${err}`);
+    return null;
   } finally {
     if (conn) conn.end();
   }
 }
 
-asyncFunction().then(() => {
+login().then(() => {
   pool.end();
 });
