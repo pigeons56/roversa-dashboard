@@ -8,3 +8,13 @@
   gap: 64px;
   font-family: var(--font-varela-round);
 }
+
+.login_box {
+  background-color: var(--white);
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-left: 10em;
+  padding-right: 10em;
+  border-radius: var(--border-radius);
+  
+}
