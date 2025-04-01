@@ -7,7 +7,7 @@ const pool = mariadb.createPool({
   connectionLimit: 5,
 });
 
-async function login(username: string, password: string) {
+export async function login(username: string, password: string) {
   let conn;
   try {
     conn = await pool.getConnection();
@@ -16,6 +16,7 @@ async function login(username: string, password: string) {
       `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
     );
 
+    //TODO: see empty/successful output
     console.log(rows);
   } catch (err) {
     console.error(`Login error: ${err}`);
@@ -24,7 +25,3 @@ async function login(username: string, password: string) {
     if (conn) conn.end();
   }
 }
-
-login().then(() => {
-  pool.end();
-});
