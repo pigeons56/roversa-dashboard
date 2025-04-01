@@ -7,14 +7,26 @@
   padding: 80px;
   gap: 64px;
   font-family: var(--font-varela-round);
+  text-align: center;
 }
 
 .login_box {
   background-color: var(--white);
-  padding-top: 5em;
+  padding-top: 1em;
   padding-bottom: 5em;
-  padding-left: 10em;
+  padding-left: 5em;
   padding-right: 10em;
   border-radius: var(--border-radius);
-  
+  text-align: left;
+}
+
+.form_input_box {
+  background-color: var(--white);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 10em;
+  border-radius: var(--border-radius);
+  text-align: left;
+  font-size: var(--font_size4)
 }

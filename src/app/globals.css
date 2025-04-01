@@ -4,6 +4,10 @@
   --white: #FFFFFF;
   --purple: #7272E4;
   --border-radius: 16px;
+  --font-size1: 64px;
+  --font-size2: 48px;
+  --font-size3: 36px;
+  --font-size4: 24px;
 }
 
 body {
@@ -15,13 +19,13 @@ body {
 }
 
 h1 {
-  font-size: 64;
+  font-size: var(--font-size1);
 }
 
 h2 {
-  font-size: 48;
+  font-size: var(--font-size2);
 }
 
 h3 {
-  font-size: 36;
+  font-size: var(--font-size3);
 }

@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Form from "./form";
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <h1>Welcome to the Roversa Teacher Dashboard!</h1>
       <div className={styles.login_box}>
         <h2>Login</h2>
+        <Form/>
       </div>
     </div>
   );
