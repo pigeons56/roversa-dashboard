@@ -49,7 +49,7 @@
 div.content {
   margin-left: 200px;
   padding: 1px 16px;
-  height: 1000px;
+  height: auto;
 }
 
 .padding_top {
@@ -68,3 +68,15 @@ div.content {
   width: 70%;
   height: 70%;
 }
+
+.title_centered {
+  font-size: var(--font-size1);
+  text-align: center;
+  padding: 1em;
+}
+
+.subtitle_centered {
+  font-size: var(--font-size2);
+  text-align: center;
+  padding: 1em;
+} 
