@@ -8,9 +8,8 @@ const pool = mariadb.createPool({
 });
 
 export async function login(username: string, password: string) {
-  let conn;
   console.log("I'M IN!!");
-  conn = await pool.getConnection();
+  const conn = await pool.getConnection();
 
   const rows = await conn.query(
     `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
