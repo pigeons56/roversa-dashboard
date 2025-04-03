@@ -1,27 +1,23 @@
 import mariadb from "mariadb";
 const pool = mariadb.createPool({
-  host: "127.0.0.1",
-  user: "root",
+  host: "44.192.207.89",
+  user: "bitnami",
   password: "VvBREv3rwDV+",
-  database: "",
+  database: "OVLug0Q!Uol5",
   connectionLimit: 5,
 });
 
 export async function login(username: string, password: string) {
   let conn;
-  try {
-    conn = await pool.getConnection();
+  console.log("I'M IN!!");
+  conn = await pool.getConnection();
 
-    const rows = await conn.query(
-      `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
-    );
+  const rows = await conn.query(
+    `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
+  );
 
-    //TODO: see empty/successful output
-    console.log(rows);
-  } catch (err) {
-    console.error(`Login error: ${err}`);
-    return null;
-  } finally {
-    if (conn) conn.end();
-  }
+  //TODO: see empty/successful output
+  console.log(rows);
+
+  if (conn) conn.end();
 }
