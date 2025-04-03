@@ -2,6 +2,7 @@
 
 import styles from "../../page.module.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -53,6 +54,9 @@ export default function SignupForm() {
         <button type="submit" className={styles.submit_button}>
           Create Account
         </button>
+        <Link href={"../../"} className={styles.link}>
+          Already have an account?
+        </Link>
       </div>
     </form>
   );
