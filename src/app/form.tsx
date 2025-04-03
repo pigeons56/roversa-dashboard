@@ -21,6 +21,7 @@ export default function Form() {
     });
 
     if (response.ok) {
+      console.log(response.status);
       router.push("dashboard/welcome");
     } else {
       // Handle errors

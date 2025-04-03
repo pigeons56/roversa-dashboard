@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
-//import { login } from "../../../db/login";
+import { login } from "../../../db/login";
+import { error } from "console";
 
 export async function POST(request: Request) {
-  try {
-    request.json().then((data) => {
-      console.log("WE ARE IN");
-      const username = data.username;
-      const password = data.password;
-
-      console.log(username, password);
-      //login(username, password);
-    });
+  const data = await request.json();
+  console.log("WE ARE IN");
+  const username = data.username;
+  const password = data.password;
+  console.log(username, password);
+  const success = await login(username, password);
+  console.log(success);
+  if (success == 1) {
     return NextResponse.json({ error: "Login successful." }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ error: err }, { status: 400 });
+  } else {
+    return NextResponse.json(
+      { error: "The username or password is incorrect." },
+      { status: 401 }
+    );
   }
 }
