@@ -10,7 +10,7 @@ export default function Form() {
 
     return (
         <form action={handleResponse}>
-            <div>
+            <div className={styles.padding_bottom}>
             <input
               name="username"
               type="username"
@@ -19,7 +19,7 @@ export default function Form() {
               className={styles.form_input_box}
             />
             </div>
-            <div>
+            <div className={styles.padding_bottom}>
             <input
               name="password"
               type="password"
@@ -27,6 +27,11 @@ export default function Form() {
               required
               className={styles.form_input_box}
             />
+            </div>
+            <div>
+            <button type="submit" className={styles.button_purple}>
+              Sign in
+            </button>
             </div>
         </form>
     );
