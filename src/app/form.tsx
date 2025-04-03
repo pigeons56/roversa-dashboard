@@ -49,7 +49,7 @@ export default function Form() {
         />
       </div>
       <div>
-        <button type="submit" className={styles.button_purple}>
+        <button type="submit" className={styles.submit_button}>
           Sign in
         </button>
       </div>

@@ -1,11 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .page {
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
+  padding: 0;
+  margin: 0;
+  gap: 0;
   font-family: var(--font-varela-round);
+  background-color: var(--light-purple);
+}
+
+ /* The side navigation menu */
+ .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: var(--indigo);
+  position: fixed;
+  height: 100%;
+  overflow: auto;
   text-align: center;
+  align-items: center;
+}
+
+/* Sidebar links */
+.button_purple {
+    font-size: var(--font-size5);
+    color: var(--white);
+    background-color: var(--purple);
+    padding-top: .7em;
+    padding-bottom: .7em;
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    border-radius: var(--border-radius);
+    border-style: none;
+    text-align: center;
+}
+
+/* Active/current link */
+.button_purple.active {
+  background-color: var(--yellow);
+  color: var(--purple);
+}
+
+/* Links on mouse-over */
+.button_purple:hover:not(.active) {
+  background-color: var(--dark-purple);
+  color: var(--white);
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+.padding_top {
+  padding-top: 1em;
+}
+
+.padding_bottom {
+  padding-bottom: 1em;
+}
+
+.img {
+  display: block;
+  margin: auto;
+  padding-top: 1.5em;
+  padding-bottom: 3em;
+  width: 70%;
+  height: 70%;
 }

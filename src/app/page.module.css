@@ -32,7 +32,7 @@
   font-size: var(--font_size4)
 }
 
-.button_purple {
+.submit_button {
   font-size: var(--font_size4);
   color: var(--white);
   background-color: var(--purple);

@@ -2,12 +2,15 @@
   --light-purple: #EAEAFF;
   --indigo: #7272E4;
   --white: #FFFFFF;
-  --purple: #7272E4;
+  --purple: #8D43C5;
+  --dark-purple: #3d155c;
+  --yellow: #FBBC27;
   --border-radius: 16px;
   --font-size1: 64px;
   --font-size2: 48px;
   --font-size3: 36px;
   --font-size4: 24px;
+  --font-size5: 18px;
 }
 
 body {
