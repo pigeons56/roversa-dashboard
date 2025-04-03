@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { login } from "../../../db/login";
+//import { login } from "../../../db/login";
 
 export async function POST(request: Request) {
   try {
@@ -12,10 +12,7 @@ export async function POST(request: Request) {
       //login(username, password);
     });
     return NextResponse.json({ error: "Login successful." }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Something went wrong." },
-      { status: 400 }
-    );
+  } catch (err) {
+    return NextResponse.json({ error: err }, { status: 400 });
   }
 }
