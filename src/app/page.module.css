@@ -17,11 +17,14 @@
 }
 
 .login_box {
+  display:block;
   background-color: var(--white);
   padding-top: 1em;
   padding-bottom: 5em;
   padding-left: 5em;
   padding-right: 10em;
+  max-block-size: 20em;
+  width: 26em;
   border-radius: var(--border-radius);
   text-align: left;
 }
@@ -62,5 +65,5 @@
 .link {
   font-size: var(--font_size3);
   color: var(--purple);
-  padding: 2em;
+  padding: 1.5em;
 }
