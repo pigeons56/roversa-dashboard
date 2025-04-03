@@ -2,8 +2,9 @@
 
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export default function Form() {
+export default function LoginForm() {
   const router = useRouter();
 
   async function handleResponse(formInput: FormData) {
@@ -22,7 +23,7 @@ export default function Form() {
 
     if (response.ok) {
       console.log(response.status);
-      router.push("dashboard/welcome");
+      router.push(`../../../dashboard/welcome?username=${username}`);
     } else {
       // Handle errors
       console.log(response.status);
@@ -53,6 +54,9 @@ export default function Form() {
         <button type="submit" className={styles.submit_button}>
           Sign in
         </button>
+        <Link href={"/auth/signup"} className={styles.link}>
+          Create Account
+        </Link>
       </div>
     </form>
   );

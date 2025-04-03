@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { login } from "../../../db/auth";
+import { signup } from "../../../db/auth";
 
 export async function POST(request: Request) {
   const data = await request.json();
@@ -7,13 +7,13 @@ export async function POST(request: Request) {
   const username = data.username;
   const password = data.password;
   console.log(username, password);
-  const success = await login(username, password);
+  const success = await signup(username, password);
   console.log(success);
   if (success == 1) {
-    return NextResponse.json({ error: "Login successful." }, { status: 200 });
+    return NextResponse.json({ error: "Signup successful." }, { status: 200 });
   } else {
     return NextResponse.json(
-      { error: "The username or password is incorrect." },
+      { error: "The username is already in use." },
       { status: 401 }
     );
   }
