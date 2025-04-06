@@ -14,7 +14,6 @@ export default function SignupForm() {
     const password = (
       formInput.get("password") as FormDataEntryValue
     ).toString();
-    console.log(username, password);
 
     const response = await fetch("/api/auth/signup", {
       method: "POST",
@@ -22,8 +21,7 @@ export default function SignupForm() {
     });
 
     if (response.ok) {
-      console.log(response.status);
-      router.push(`../../../dashboard/welcome?username=${username}`);
+      router.push("../../../dashboard/welcome");
     } else {
       // Handle errors
       console.log(response.status);

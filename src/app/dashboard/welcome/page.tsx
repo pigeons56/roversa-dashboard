@@ -2,11 +2,21 @@
 
 import styles from "./page.module.css";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useCookies } from "next-client-cookies";
+import { useEffect } from "react";
 
 export default function Welcome() {
-  const searchParams = useSearchParams();
-  const username = searchParams.get("username");
+  const cookies = useCookies();
+  const router = useRouter();
+  const username = cookies.get("username");
+
+  useEffect(() => {
+    if (username == null) {
+      router.push("../../");
+    }
+  }, [username]);
+
   return (
     <div className={styles.page}>
       <div className={styles.sidebar}>

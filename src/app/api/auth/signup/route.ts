@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { signup } from "../../../db/auth";
+import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
+  const cookieStore = await cookies();
   const data = await request.json();
-  console.log("WE ARE IN");
   const username = data.username;
   const password = data.password;
-  console.log(username, password);
   const success = await signup(username, password);
-  console.log(success);
   if (success == 1) {
+    cookieStore.set("username", username);
     return NextResponse.json({ error: "Signup successful." }, { status: 200 });
   } else {
     return NextResponse.json(

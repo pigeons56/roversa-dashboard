@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { CookiesProvider } from "next-client-cookies/server";
 
 const varelaRound = localFont({
   src: "../../public/fonts/VarelaRound-Regular.ttf",
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${varelaRound.variable}`}>{children}</body>
+      <body className={`${varelaRound.variable}`}>
+        <CookiesProvider>{children}</CookiesProvider>
+      </body>
     </html>
   );
 }
