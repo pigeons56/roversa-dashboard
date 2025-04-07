@@ -6,6 +6,13 @@
   background-color: var(--light-purple);
 }
 
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: auto;
+  position: relative;
+}
+
  /* The side navigation menu */
  .sidebar {
   margin: 0;

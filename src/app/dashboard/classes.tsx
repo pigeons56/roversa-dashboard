@@ -30,8 +30,8 @@ export default function Classes() {
     });
   }
 
-  function handleClick() {
-    router.push("../");
+  function handleClick(i: number) {
+    router.push(`./class?key=${i}`);
   }
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Classes() {
     <div className={styles.classes_bar}>
       {data.map((d, i) => (
         <button
-          onClick={() => handleClick()}
+          onClick={() => handleClick(i)}
           key={i}
           className={styles.button_white}
         >

@@ -1,0 +1,6 @@
+.title {
+    display: block;
+    font-size: var(--font-size1);
+    text-align: left;
+    padding: 0.5em;
+  }
