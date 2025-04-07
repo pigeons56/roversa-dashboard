@@ -19,18 +19,36 @@
   align-items: center;
 }
 
+.classes_bar {
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  width: 200px;
+  height: 500px;
+  background-color: var(--indigo);
+  position: auto;
+  overflow: auto;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  align-content: start;
+  overflow-y: auto;
+}
+
 /* Sidebar links */
 .button_purple {
-    font-size: var(--font-size5);
-    color: var(--white);
-    background-color: var(--purple);
-    padding-top: .7em;
-    padding-bottom: .7em;
-    padding-left: 1.4em;
-    padding-right: 1.4em;
-    border-radius: var(--border-radius);
-    border-style: none;
-    text-align: center;
+  display: block;
+  font-size: var(--font-size5);
+  color: var(--white);
+  background-color: var(--purple);
+  padding-top: .7em;
+  padding-bottom: .7em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
 }
 
 /* Active/current link */
@@ -45,6 +63,34 @@
   color: var(--white);
 }
 
+/* Sidebar links */
+.button_white {
+  display: block;
+  font-size: var(--font-size5);
+  color: var(--purple);
+  background-color: var(--white);
+  padding-top: .7em;
+  padding-bottom: .7em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+  margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+/* Active/current link */
+.button_white.active {
+background-color: var(--yellow);
+color: var(--purple);
+}
+
+/* Links on mouse-over */
+.button_white:hover:not(.active) {
+background-color: var(--dark-purple);
+color: var(--white);
+}
+
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
   margin-left: 200px;
@@ -57,7 +103,7 @@ div.content {
 }
 
 .padding_bottom {
-  padding-bottom: 1em;
+  padding-bottom: .5em;
 }
 
 .img {
@@ -80,3 +126,36 @@ div.content {
   text-align: center;
   padding: 1em;
 } 
+
+.my_classes_label {
+  font-size: var(--font-size5);
+  color: var(--white);
+  margin-bottom: 1em;
+}
+
+.error_label {
+  font-size: var(--font-size5);
+  color: var(--yellow);
+  margin-bottom: 1em;
+}
+
+.new_circle {
+  display: block;
+  font-size: var(--font-size5);
+  color: var(--purple);
+  background-color: var(--white);
+  margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+  padding-top: .2em;
+  padding-bottom: .2em;
+}
+
+
+  
+/* Links on mouse-over */
+.new_circle:hover:not(.active) {
+background-color: var(--yellow);
+color: var(--purple);
+}
