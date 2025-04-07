@@ -7,5 +7,15 @@ export default function Class() {
   const cookies = useCookies();
   const className = cookies.get("currentClass");
 
-  return <div className={styles.title}>Class {className}</div>;
+  return (
+    <div>
+      <div className={styles.title}>Class {className}</div>
+      <div>
+        <button className={styles.button_yellow}>Edit Class</button>
+        <button className={styles.button_yellow}>Edit Students</button>
+      </div>
+      <div className={styles.section}>Class Overview</div>
+      <div className={styles.section}>Roversas</div>
+    </div>
+  );
 }

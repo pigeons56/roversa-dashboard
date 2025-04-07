@@ -25,6 +25,10 @@ body {
   padding: 0;
 }
 
+button {
+  font-family: inherit;
+}
+
 h1 {
   font-size: var(--font-size1);
 }

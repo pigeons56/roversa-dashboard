@@ -2,5 +2,36 @@
     display: block;
     font-size: var(--font-size1);
     text-align: left;
-    padding: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
+
+.section {
+  display: block;
+  background-color: var(--white);
+  font-size: var(--font-size2);
+  border-radius: var(--border-radius);
+  height: 300px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button_yellow {
+  display: block;
+  font-size: var(--font-size5);
+  color: var(--white);
+  background-color: var(--yellow);
+  padding-top: .7em;
+  padding-bottom: .7em;
+  width: 200px;
+  margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+/* Active/current link */
+.button_yellow.active {
+background-color: var(--purple);
+}
