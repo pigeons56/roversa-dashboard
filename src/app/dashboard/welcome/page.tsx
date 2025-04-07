@@ -2,15 +2,18 @@
 
 import styles from "./page.module.css";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { useEffect } from "react";
 import Classes from "./classes";
+import ClassPopup from "./class-popup";
 
 export default function Welcome() {
   const cookies = useCookies();
   const router = useRouter();
   const username = cookies.get("username");
+  const searchParams = useSearchParams();
+  const createClass = searchParams.get("createClass");
 
   useEffect(() => {
     if (username == null) {
@@ -36,6 +39,7 @@ export default function Welcome() {
         <Classes />
       </div>
       <div className={styles.content}>
+        {createClass && <ClassPopup />}
         <div className={styles.title_centered}>
           Welcome to the Roversa Teacher Dashboard, {username}!
         </div>

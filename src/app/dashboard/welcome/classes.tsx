@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
+import Link from "next/link";
 
 export default function Classes() {
   const cookies = useCookies();
@@ -53,7 +54,9 @@ export default function Classes() {
           {d}
         </div>
       ))}
-      <div className={styles.new_circle}>+</div>
+      <Link href="?createClass=true" className={styles.new_circle}>
+        +
+      </Link>
     </div>
   );
 }

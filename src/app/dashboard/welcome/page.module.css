@@ -96,6 +96,7 @@ div.content {
   margin-left: 200px;
   padding: 1px 16px;
   height: auto;
+  position: relative;
 }
 
 .padding_top {
@@ -150,12 +151,72 @@ div.content {
   text-align: center;
   padding-top: .2em;
   padding-bottom: .2em;
+  text-decoration: none;
 }
 
 
-  
 /* Links on mouse-over */
 .new_circle:hover:not(.active) {
 background-color: var(--yellow);
 color: var(--purple);
 }
+
+.popup_box {
+  display:block;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  color: var(--purple);
+  z-index: 1000;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  font-size: var(--font-size5);
+}
+
+.popup_input_box {
+  background-color: var(--white);
+  margin: 10px;
+  max-width:170px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border-style: solid;
+  font-size: var(--font-size5);
+  color: var(--dark-purple);
+}
+
+.popup_create_button {
+  font-size: var(--font_size4);
+  color: var(--white);
+  background-color: var(--green);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 80px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+  margin: 3px;
+}
+
+.popup_create_button:hover:not(.active) {
+  background-color: var(--yellow);
+  }
+
+.popup_close_button {
+  font-size: var(--font_size4);
+  color: var(--white);
+  background-color: var(--red);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 80px;
+  margin: 3px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+.popup_close_button:hover:not(.active) {
+  background-color: var(--yellow);
+  }
