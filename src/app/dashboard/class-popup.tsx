@@ -30,6 +30,7 @@ export default function ClassPopup(props: any) {
             name="className"
             type="text"
             placeholder=""
+            maxLength={16}
             required
             className={styles.popup_input_box}
           ></input>

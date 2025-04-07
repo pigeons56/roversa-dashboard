@@ -35,6 +35,7 @@ export default function LoginForm() {
           name="username"
           type="username"
           placeholder="Username"
+          maxLength={16}
           required
           className={styles.form_input_box}
         />
@@ -44,6 +45,7 @@ export default function LoginForm() {
           name="password"
           type="password"
           placeholder="Password"
+          maxLength={32}
           required
           className={styles.form_input_box}
         />
