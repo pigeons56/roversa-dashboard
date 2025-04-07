@@ -38,7 +38,8 @@
   border-radius: var(--border-radius);
   text-align: left;
   border-style:solid;
-  font-size: var(--font_size4)
+  font-size: var(--font_size4);
+  color:var(--dark-purple);
 }
 
 .submit_button {
