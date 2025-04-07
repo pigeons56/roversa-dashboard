@@ -6,6 +6,7 @@ import { useCookies } from "next-client-cookies";
 import Link from "next/link";
 import ClassPopup from "./class-popup";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Classes() {
   const cookies = useCookies();
@@ -13,6 +14,7 @@ export default function Classes() {
   const [isLoading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const createClass = searchParams.get("createClass");
+  const router = useRouter();
 
   function updateClasses() {
     fetch("../../api/dashboard/classes", { method: "GET" }).then(() => {
@@ -26,6 +28,10 @@ export default function Classes() {
       setData(arr);
       setLoading(false);
     });
+  }
+
+  function handleClick() {
+    router.push("../");
   }
 
   useEffect(() => {
@@ -46,7 +52,7 @@ export default function Classes() {
       <div className={styles.classes_bar}>
         <div className={styles.my_classes_label}>My Classes</div>
         <div className={styles.error_label}>No classes yet!</div>
-        {createClass && <ClassPopup />}
+        {createClass && <ClassPopup setLoading={setLoading} />}
         <Link href="?createClass=true" className={styles.new_circle}>
           +
         </Link>
@@ -56,11 +62,14 @@ export default function Classes() {
 
   return (
     <div className={styles.classes_bar}>
-      <div className={styles.my_classes_label}>My Classes</div>
       {data.map((d, i) => (
-        <div key={i} className={styles.button_white}>
+        <button
+          onClick={() => handleClick()}
+          key={i}
+          className={styles.button_white}
+        >
           {d}
-        </div>
+        </button>
       ))}
       {createClass && <ClassPopup setLoading={setLoading} />}
       <Link href="?createClass=true" className={styles.new_circle}>
