@@ -1,10 +1,25 @@
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 
-export default function ClassPopup() {
+export default function ClassPopup(props: any) {
   const router = useRouter();
   async function handleResponse(formInput: FormData) {
-    router.back;
+    const className = (
+      formInput.get("className") as FormDataEntryValue
+    ).toString();
+
+    const response = await fetch("/api/dashboard/classes", {
+      method: "POST",
+      body: JSON.stringify({ className }),
+    });
+
+    if (response.ok) {
+      props.setLoading(true);
+      router.back();
+    } else {
+      // Handle errors
+      console.log(response.status);
+    }
   }
   return (
     <div className={styles.popup_box}>
@@ -12,8 +27,8 @@ export default function ClassPopup() {
       <form action={handleResponse}>
         <div>
           <input
-            name="Class Name"
-            type="className"
+            name="className"
+            type="text"
             placeholder=""
             required
             className={styles.popup_input_box}

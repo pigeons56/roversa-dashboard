@@ -167,13 +167,14 @@ color: var(--purple);
   border-radius: var(--border-radius);
   height: 200px;
   width: 200px;
-  margin-top: 200px;
   color: var(--purple);
   z-index: 1000;
-  position: absolute;
+  position:relative;
   text-align: center;
   align-content: center;
   font-size: var(--font-size5);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .popup_input_box {

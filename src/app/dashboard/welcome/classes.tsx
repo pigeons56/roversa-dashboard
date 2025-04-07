@@ -4,11 +4,15 @@ import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";
+import ClassPopup from "./class-popup";
+import { useSearchParams } from "next/navigation";
 
 export default function Classes() {
   const cookies = useCookies();
   const [data, setData] = useState<string[]>([]);
   const [isLoading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const createClass = searchParams.get("createClass");
 
   function updateClasses() {
     fetch("../../api/dashboard/classes", { method: "GET" }).then(() => {
@@ -26,7 +30,7 @@ export default function Classes() {
 
   useEffect(() => {
     updateClasses();
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -42,6 +46,10 @@ export default function Classes() {
       <div className={styles.classes_bar}>
         <div className={styles.my_classes_label}>My Classes</div>
         <div className={styles.error_label}>No classes yet!</div>
+        {createClass && <ClassPopup />}
+        <Link href="?createClass=true" className={styles.new_circle}>
+          +
+        </Link>
       </div>
     );
   }
@@ -54,6 +62,7 @@ export default function Classes() {
           {d}
         </div>
       ))}
+      {createClass && <ClassPopup setLoading={setLoading} />}
       <Link href="?createClass=true" className={styles.new_circle}>
         +
       </Link>
