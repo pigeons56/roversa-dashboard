@@ -135,7 +135,7 @@ color: var(--white);
 /* Links on mouse-over */
 .new_circle:hover:not(.active) {
 background-color: var(--yellow);
-color: var(--purple);
+color: var(--white);
 }
 
 .popup_box {
