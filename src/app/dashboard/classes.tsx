@@ -41,7 +41,6 @@ export default function Classes() {
   if (isLoading) {
     return (
       <div className={styles.classes_bar}>
-        <div className={styles.my_classes_label}>My Classes</div>
         <div className={styles.error_label}>Loading...</div>
       </div>
     );
@@ -50,7 +49,6 @@ export default function Classes() {
   if (data.length === 0) {
     return (
       <div className={styles.classes_bar}>
-        <div className={styles.my_classes_label}>My Classes</div>
         <div className={styles.error_label}>No classes yet!</div>
         {createClass && <ClassPopup setLoading={setLoading} />}
         <Link href="?createClass=true" className={styles.new_circle}>
