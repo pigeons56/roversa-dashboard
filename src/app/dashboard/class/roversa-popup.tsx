@@ -17,12 +17,13 @@ export default function RoversaPopup(props: any) {
             placeholder="Display Name"
             maxLength={16}
             required
+            autoComplete="off"
             className={styles.popup_input_box}
           ></input>
         </div>
         <div>
           <select name="className" required className={styles.popup_input_box}>
-            <option value="" disabled selected>
+            <option defaultValue="" disabled>
               RoversaID
             </option>
             <option value="temp">temp</option>

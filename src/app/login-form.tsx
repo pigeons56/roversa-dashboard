@@ -37,6 +37,7 @@ export default function LoginForm() {
           placeholder="Username"
           maxLength={16}
           required
+          autoComplete="off"
           className={styles.form_input_box}
         />
       </div>
@@ -47,6 +48,7 @@ export default function LoginForm() {
           placeholder="Password"
           maxLength={32}
           required
+          autoComplete="off"
           className={styles.form_input_box}
         />
       </div>

@@ -32,6 +32,7 @@ export default function ClassPopup(props: any) {
             placeholder=""
             maxLength={16}
             required
+            autoComplete="off"
             className={styles.popup_input_box}
           ></input>
         </div>
