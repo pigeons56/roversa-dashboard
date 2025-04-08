@@ -32,7 +32,7 @@ export default function RoversaSection() {
 
   function handleClick(d: string) {
     cookies.set("currentRoversa", d);
-    router.push("roversa");
+    router.push("/dashboard/class/roversa");
   }
 
   useEffect(() => {

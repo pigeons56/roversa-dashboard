@@ -1,0 +1,11 @@
+.title_centered {
+  font-size: var(--font-size1);
+  text-align: center;
+  padding: 1em;
+}
+
+.subtitle_centered {
+  font-size: var(--font-size2);
+  text-align: center;
+  padding: 1em;
+} 
