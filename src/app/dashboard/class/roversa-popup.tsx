@@ -12,17 +12,25 @@ export default function RoversaPopup(props: any) {
       <form action={handleResponse}>
         <div>
           <input
-            name="className"
+            name="displayName"
             type="text"
-            placeholder=""
+            placeholder="Display Name"
             maxLength={16}
             required
             className={styles.popup_input_box}
           ></input>
         </div>
         <div>
+          <select name="className" required className={styles.popup_input_box}>
+            <option value="" disabled selected>
+              RoversaID
+            </option>
+            <option value="temp">temp</option>
+          </select>
+        </div>
+        <div>
           <button type="submit" className={styles.popup_create_button}>
-            Create
+            Add
           </button>
           <button
             type="button"

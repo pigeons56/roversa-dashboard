@@ -82,3 +82,66 @@
 .add_button:hover:not(.active) {
 background-color: var(--yellow);
 }
+
+.popup_box {
+  display:block;
+  background-color: var(--light-purple);
+  border-radius: var(--border-radius);
+  height: 200px;
+  width: 200px;
+  color: var(--purple);
+  z-index: 1000;
+  position:relative;
+  text-align: center;
+  align-content: center;
+  font-size: var(--font-size5);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.popup_input_box {
+  background-color: var(--white);
+  margin: 10px;
+  max-width:170px;
+  width: 170px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border-style: solid;
+  font-size: var(--font-size5);
+  color: var(--dark-purple);
+}
+
+
+.popup_create_button {
+  font-size: var(--font_size4);
+  color: var(--white);
+  background-color: var(--green);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 80px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+  margin: 3px;
+}
+
+.popup_create_button:hover:not(.active) {
+  background-color: var(--yellow);
+  }
+
+.popup_close_button {
+  font-size: var(--font_size4);
+  color: var(--white);
+  background-color: var(--red);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 80px;
+  margin: 3px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+.popup_close_button:hover:not(.active) {
+  background-color: var(--yellow);
+  }

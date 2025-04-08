@@ -46,10 +46,15 @@ export default function RoversaSection() {
       <div className={styles.section}>
         <div className={styles.section_header}>
           Roversas
-          <Link href="?addRoversa=true" className={styles.add_button}>
+          <Link
+            href="?addRoversa=true"
+            className={styles.add_button}
+            scroll={false}
+          >
             +
           </Link>
         </div>
+        {addRoversa && <RoversaPopup setLoading={setLoading} />}
         <h5>No Roversas yet!</h5>
       </div>
     );
