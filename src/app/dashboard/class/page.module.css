@@ -19,6 +19,14 @@
   overflow-y: auto;
 }
 
+.section_header {
+  display: flex;
+  font-size: var(--font-size2);
+  color: var(--purple);
+  justify-content: left;
+  align-items: center;
+}
+
 .button_yellow {
   display: block;
   font-size: var(--font-size5);
@@ -50,4 +58,27 @@
   max-height:120px;
   margin:10px;
   padding:10px;
+}
+
+.add_button {
+  display: inline-block;
+  font-size: var(--font-size5);
+  color: var(--white);
+  background-color: var(--purple);
+  height: 30px;
+  width: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 50%;
+  border-style: none;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+}
+
+
+/* Links on mouse-over */
+.add_button:hover:not(.active) {
+background-color: var(--yellow);
 }
