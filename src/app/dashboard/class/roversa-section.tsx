@@ -6,6 +6,7 @@ import { useCookies } from "next-client-cookies";
 import Link from "next/link";
 import RoversaPopup from "./roversa-popup";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function RoversaSection() {
   const cookies = useCookies();
@@ -13,19 +14,25 @@ export default function RoversaSection() {
   const [isLoading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const addRoversa = searchParams.get("addRoversa");
+  const router = useRouter();
 
   function updateRoversas() {
     fetch("../../api/dashboard/roversas", { method: "GET" }).then(() => {
-      const classesJSON = JSON.parse(cookies.get("roversas")!);
+      const roversasJSON = JSON.parse(cookies.get("roversas")!);
       const arr: string[] = [];
 
-      for (let i = 0; i < classesJSON.length; i++) {
-        arr.push(classesJSON[i].roversaName);
+      for (let i = 0; i < roversasJSON.length; i++) {
+        arr.push(roversasJSON[i].displayName);
       }
 
       setData(arr);
       setLoading(false);
     });
+  }
+
+  function handleClick(d: string) {
+    cookies.set("currentRoversa", d);
+    router.push("roversa");
   }
 
   useEffect(() => {
@@ -74,7 +81,15 @@ export default function RoversaSection() {
       </div>
       <div>
         {addRoversa && <RoversaPopup setLoading={setLoading} />}
-        <span className={styles.roversa_card}>Roversa1</span>
+        {data.map((d, i) => (
+          <button
+            onClick={() => handleClick(d)}
+            key={i}
+            className={styles.roversa_card}
+          >
+            {d}
+          </button>
+        ))}
       </div>
     </div>
   );

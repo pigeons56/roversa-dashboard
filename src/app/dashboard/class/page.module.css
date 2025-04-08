@@ -52,12 +52,19 @@
   text-align: center;
   font-size: var(--font-size5);
   border-style:solid;
+  border-color: var(--purple);
+  background-color: var(--white);
   height:120px;
   width:150px;
   max-width:145px;
   max-height:120px;
   margin:10px;
   padding:10px;
+  color: var(--purple);
+}
+
+.roversa_card:hover:not(.active) {
+  filter: brightness(80%);
 }
 
 .add_button {
