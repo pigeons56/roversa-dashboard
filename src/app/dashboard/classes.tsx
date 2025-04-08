@@ -52,7 +52,11 @@ export default function Classes() {
       <div className={styles.classes_bar}>
         <div className={styles.error_label}>No classes yet!</div>
         {createClass && <ClassPopup setLoading={setLoading} />}
-        <Link href="?createClass=true" className={styles.new_circle}>
+        <Link
+          href="?createClass=true"
+          scroll={false}
+          className={styles.new_circle}
+        >
           +
         </Link>
       </div>
@@ -71,7 +75,11 @@ export default function Classes() {
         </button>
       ))}
       {createClass && <ClassPopup setLoading={setLoading} />}
-      <Link href="?createClass=true" className={styles.new_circle}>
+      <Link
+        href="?createClass=true"
+        scroll={false}
+        className={styles.new_circle}
+      >
         +
       </Link>
     </div>

@@ -34,7 +34,9 @@ export default function RoversaPopup(props: any) {
           </button>
           <button
             type="button"
-            onClick={router.back}
+            onClick={() => {
+              router.push(window.location.pathname, { scroll: false });
+            }}
             className={styles.popup_close_button}
           >
             Close
