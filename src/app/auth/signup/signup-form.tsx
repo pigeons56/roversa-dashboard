@@ -53,7 +53,7 @@ export default function SignupForm() {
           Create Account
         </button>
         <Link href={"../../"} className={styles.link}>
-          Already have an account?
+          Login
         </Link>
       </div>
     </form>
