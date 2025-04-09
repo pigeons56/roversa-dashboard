@@ -46,3 +46,22 @@ export async function getRoversas(username: string) {
     if (conn) conn.end();
   }
 }
+
+export async function addRoversaOutput(
+  roversaID: number,
+  program: string,
+  battery: number
+) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(
+      `INSERT INTO roversaOutput (roversaID, program, battery) VALUES ("${roversaID}","${program}","${battery}")`
+    );
+    return 1;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
