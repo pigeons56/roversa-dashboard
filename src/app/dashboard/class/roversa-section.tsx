@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function RoversaSection() {
   const cookies = useCookies();
+  const currentClass = cookies.get("currentClass");
   const [data, setData] = useState<string[]>([]);
   const [isLoading, setLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -37,7 +38,7 @@ export default function RoversaSection() {
 
   useEffect(() => {
     updateRoversas();
-  }, [isLoading]);
+  }, [isLoading, currentClass]);
 
   if (isLoading) {
     return (
