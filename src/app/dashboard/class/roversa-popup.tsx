@@ -1,18 +1,33 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 
 export default function RoversaPopup(props: any) {
   const cookies = useCookies();
   const router = useRouter();
   const [data, setData] = useState<string[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  const searchParams = useSearchParams();
-  const addRoversa = searchParams.get("addRoversa");
 
   async function handleResponse(formInput: FormData) {
-    // TODO
+    const displayName = (
+      formInput.get("displayName") as FormDataEntryValue
+    ).toString();
+    const roversaID = (
+      formInput.get("roversaID") as FormDataEntryValue
+    ).toString();
+
+    const response = await fetch("/api/dashboard/roversas", {
+      method: "POST",
+      body: JSON.stringify({ displayName, roversaID }),
+    });
+
+    if (response.ok) {
+      props.setLoading(true);
+      router.back();
+    } else {
+      // Handle errors
+      console.log(response.status);
+    }
   }
 
   function getUnassignedRoversaList() {
@@ -27,7 +42,6 @@ export default function RoversaPopup(props: any) {
       }
 
       setData(arr);
-      setLoading(false);
     });
   }
 
@@ -52,7 +66,7 @@ export default function RoversaPopup(props: any) {
         </div>
         <div>
           <select
-            name="className"
+            name="roversaID"
             required
             defaultValue=""
             className={styles.popup_input_box}

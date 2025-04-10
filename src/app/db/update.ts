@@ -47,6 +47,30 @@ export async function getRoversas(username: string) {
   }
 }
 
+export async function addRoversa(
+  displayName: string,
+  roversaID: string,
+  className: string,
+  username: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(
+      `INSERT IGNORE INTO roversas (displayName, roversaID, username) VALUES ('${displayName}', '${roversaID}', '${username}')`
+    );
+
+    await conn.query(
+      `INSERT INTO roversa_classes (roversaID, className, username) VALUES ('${roversaID}','${className}', '${username}')`
+    );
+    return 1;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
 export async function addRoversaOutput(
   roversaID: number,
   program: string,
