@@ -86,7 +86,7 @@ export default function RoversaPopup(props: any) {
           onClick={getUnassignedRoversaList}
           className={styles.popup_refresh_button}
         >
-          Refresh RoversaIDs
+          Refresh
         </button>
         <div>
           <button type="submit" className={styles.popup_create_button}>
