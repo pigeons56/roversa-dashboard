@@ -65,3 +65,26 @@ export async function addRoversaOutput(
     if (conn) conn.end();
   }
 }
+
+export async function getUnassignedRoversaIDs(
+  username: string,
+  currentClass: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    const unassignedRoversaIDs = await conn.query(
+      `
+      SELECT roversaID from roversa_output WHERE roversaID 
+      NOT IN (
+      SELECT roversaID FROM roversa_classes 
+      WHERE className = ${currentClass} AND username = ${username})
+      `
+    );
+    return unassignedRoversaIDs;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
