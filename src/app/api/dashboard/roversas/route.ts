@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getRoversas, addRoversa } from "../../../db/update";
 import { cookies } from "next/headers";
-import { getDisplayName } from "next/dist/shared/lib/utils";
 
 export async function GET() {
   const cookieStore = await cookies();
   const username = cookieStore.get("username")?.value;
-  const roversas = await getRoversas(username!);
+  const currentClass = cookieStore.get("currentClass")?.value;
+  const roversas = await getRoversas(currentClass!, username!);
   var json_str = JSON.stringify(roversas);
   cookieStore.set("roversas", json_str);
   return NextResponse.json(

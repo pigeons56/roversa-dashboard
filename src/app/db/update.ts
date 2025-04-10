@@ -32,11 +32,15 @@ export async function addClass(className: string, username: string) {
   }
 }
 
-export async function getRoversas(username: string) {
+export async function getRoversas(className: string, username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT displayName FROM roversas WHERE username='${username}'`
+      `SELECT roversas.displayName FROM roversas JOIN roversa_classes \
+      ON roversas.roversaID = roversa_classes.roversaID \
+      WHERE roversa_classes.className='${className}' \
+      AND roversa_classes.username='${username}' \
+      AND roversas.username='${username}'`
     );
     return rows;
   } catch (error) {
