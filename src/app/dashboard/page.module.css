@@ -21,7 +21,7 @@ div.content {
   background-color: var(--indigo);
   position: fixed;
   height: 100%;
-  overflow: auto;
+  overflow: fixed;
   text-align: center;
   align-items: center;
 }
@@ -31,7 +31,7 @@ div.content {
   margin: 0;
   padding: 0;
   width: 200px;
-  height: 500px;
+  height: 300px;
   background-color: var(--indigo);
   position: auto;
   overflow: auto;
