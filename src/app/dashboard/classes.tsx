@@ -5,8 +5,7 @@ import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";
 import ClassPopup from "./class-popup";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Classes() {
   const cookies = useCookies();

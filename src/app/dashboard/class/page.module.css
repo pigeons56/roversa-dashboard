@@ -84,7 +84,6 @@
   text-decoration: none;
 }
 
-
 /* Links on mouse-over */
 .add_button:hover:not(.active) {
 background-color: var(--yellow);
@@ -118,13 +117,12 @@ background-color: var(--yellow);
   color: var(--dark-purple);
 }
 
-
 .popup_create_button {
   font-size: var(--font_size4);
   color: var(--white);
   background-color: var(--green);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   width: 80px;
   border-radius: var(--border-radius);
   border-style: none;
@@ -140,8 +138,8 @@ background-color: var(--yellow);
   font-size: var(--font_size4);
   color: var(--white);
   background-color: var(--red);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   width: 80px;
   margin: 3px;
   border-radius: var(--border-radius);
@@ -152,3 +150,21 @@ background-color: var(--yellow);
 .popup_close_button:hover:not(.active) {
   background-color: var(--yellow);
   }
+
+.popup_refresh_button {
+  font-size: var(--font_size4);
+  color: var(--white);
+  background-color: var(--purple);
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin: 3px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+  
+.popup_refresh_button:hover:not(.active) {
+  background-color: var(--yellow);
+}

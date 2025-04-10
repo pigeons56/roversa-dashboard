@@ -49,6 +49,7 @@ h5 {
   font-size: var(--font-size5);
 }
 
-select:invalid, select option[value=""] {
+select:invalid,
+select option[value=""] {
   color: #9680a7;
 }

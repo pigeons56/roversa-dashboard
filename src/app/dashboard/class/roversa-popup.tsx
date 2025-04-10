@@ -1,11 +1,40 @@
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCookies } from "next-client-cookies";
 
 export default function RoversaPopup(props: any) {
+  const cookies = useCookies();
   const router = useRouter();
+  const [data, setData] = useState<string[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const addRoversa = searchParams.get("addRoversa");
+
   async function handleResponse(formInput: FormData) {
     // TODO
   }
+
+  function getUnassignedRoversaList() {
+    fetch("../../api/esp32", { method: "GET" }).then(() => {
+      const unassignedRoversasJSON = JSON.parse(
+        cookies.get("unassignedRoversas")!
+      );
+      const arr: string[] = [];
+
+      for (let i = 0; i < unassignedRoversasJSON.length; i++) {
+        arr.push(unassignedRoversasJSON[i].roversaID);
+      }
+
+      setData(arr);
+      setLoading(false);
+    });
+  }
+
+  useEffect(() => {
+    getUnassignedRoversaList();
+  }, []);
+
   return (
     <div className={styles.popup_box}>
       <div>Add Roversa</div>
@@ -22,13 +51,29 @@ export default function RoversaPopup(props: any) {
           ></input>
         </div>
         <div>
-          <select name="className" required className={styles.popup_input_box}>
-            <option defaultValue="" disabled>
+          <select
+            name="className"
+            required
+            defaultValue=""
+            className={styles.popup_input_box}
+          >
+            <option value="" disabled hidden>
               RoversaID
             </option>
-            <option value="temp">temp</option>
+            {data.map((d, i) => (
+              <option key={i} value={d}>
+                {d}
+              </option>
+            ))}
           </select>
         </div>
+        <button
+          type="button"
+          onClick={getUnassignedRoversaList}
+          className={styles.popup_refresh_button}
+        >
+          Refresh RoversaIDs
+        </button>
         <div>
           <button type="submit" className={styles.popup_create_button}>
             Add

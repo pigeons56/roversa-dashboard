@@ -73,12 +73,10 @@ export async function getUnassignedRoversaIDs(
   const conn = await pool.getConnection();
   try {
     const unassignedRoversaIDs = await conn.query(
-      `
-      SELECT roversaID from roversa_output WHERE roversaID 
-      NOT IN (
-      SELECT roversaID FROM roversa_classes 
-      WHERE className = ${currentClass} AND username = ${username})
-      `
+      `SELECT roversaID from roversa_output WHERE roversaID \
+      NOT IN ( \
+      SELECT roversaID FROM roversa_classes \
+      WHERE className = "${currentClass}" AND username = "${username}")`
     );
     return unassignedRoversaIDs;
   } catch (error) {
