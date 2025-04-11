@@ -7,6 +7,7 @@
   --yellow: #FBBC27;
   --red: #fc382f;
   --green: #12bf68;
+  --gray: #9680a7;
   --border-radius: 16px;
   --font-size1: 64px;
   --font-size2: 48px;
@@ -51,5 +52,5 @@ h5 {
 
 select:invalid,
 select option[value=""] {
-  color: #9680a7;
+  color: var(--gray);
 }

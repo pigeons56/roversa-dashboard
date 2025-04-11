@@ -36,7 +36,7 @@ export async function getRoversas(className: string, username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT roversas.displayName FROM roversas JOIN roversa_classes \
+      `SELECT roversas.displayName, roversas.roversaID FROM roversas JOIN roversa_classes \
       ON roversas.roversaID = roversa_classes.roversaID \
       WHERE roversa_classes.className='${className}' \
       AND roversa_classes.username='${username}' \
@@ -107,6 +107,21 @@ export async function getUnassignedRoversaIDs(
       WHERE className = "${currentClass}" AND username = "${username}")`
     );
     return unassignedRoversaIDs;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getBattery(className: string, username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows =
+      await conn.query(`SELECT roversaID, battery from roversa_output WHERE roversaID IN \n
+      (SELECT roversaID FROM roversa_classes WHERE className = '${className}') ORDER BY datetime DESC`);
+    return rows;
   } catch (error) {
     console.log(error);
     return -1;
