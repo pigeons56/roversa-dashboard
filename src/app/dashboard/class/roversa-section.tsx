@@ -32,12 +32,14 @@ export default function RoversaSection() {
           color_arr.push("gray");
           for (let j = 0; j < batteryJSON.length; j++) {
             if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
+              // Set battery percent
               let batteryPercent =
                 (parseFloat(batteryJSON[j].battery) / 5.1) * 100;
               if (batteryPercent > 100) batteryPercent = 100;
 
+              // Set color according to battery
               if (batteryPercent > 70) color_arr[i] = "green";
-              else if (batteryPercent > 30) color_arr[i] = "yellow";
+              else if (batteryPercent > 40) color_arr[i] = "yellow";
               else color_arr[i] = "red";
 
               battery_arr[i] = "%" + batteryPercent.toFixed(0);
