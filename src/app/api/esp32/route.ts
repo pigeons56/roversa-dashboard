@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(request: Request) {
   console.log("POST from esp32 received.");
   const data = await request.json();
-  const roversaID = parseInt(data.roversaID);
+  const roversaID = parseInt(data.roversaID, 16);
   const program = data.program;
   const button = data.button;
   const battery = parseFloat(data.battery);
