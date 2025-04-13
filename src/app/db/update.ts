@@ -78,12 +78,13 @@ export async function addRoversa(
 export async function addRoversaOutput(
   roversaID: number,
   program: string,
+  button: string,
   battery: number
 ) {
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT INTO roversaOutput (roversaID, program, battery) VALUES ("${roversaID}","${program}","${battery}")`
+      `INSERT INTO roversaOutput (roversaID, program, button, battery) VALUES ("${roversaID}","${program}","${button}","${battery}")`
     );
     return 1;
   } catch (error) {

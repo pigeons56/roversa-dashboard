@@ -23,10 +23,11 @@ export async function POST(request: Request) {
   const data = await request.json();
   const roversaID = parseInt(data.roversaID);
   const program = data.program;
+  const button = data.button;
   const battery = parseFloat(data.battery);
 
   console.log("Sending request to Mariadb...");
-  const success = await addRoversaOutput(roversaID, program, battery);
+  const success = await addRoversaOutput(roversaID, program, button, battery);
 
   if (success == 1) {
     console.log("Database successfully updated.");
