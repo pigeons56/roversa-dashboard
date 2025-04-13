@@ -8,7 +8,6 @@ export async function GET() {
   const battery = await getBattery(currentClass!);
   const json_str = JSON.stringify(battery);
   cookieStore.set("battery", json_str);
-  console.log("GOT BATTERY");
   return NextResponse.json(
     { error: "Successfully retrieved battery info." },
     { status: 200 }

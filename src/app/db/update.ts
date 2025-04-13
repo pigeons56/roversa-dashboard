@@ -36,11 +36,9 @@ export async function getRoversas(className: string, username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT roversas.displayName, roversas.roversaID FROM roversas JOIN roversa_classes \
-      ON roversas.roversaID = roversa_classes.roversaID \
-      WHERE roversa_classes.className='${className}' \
-      AND roversa_classes.username='${username}' \
-      AND roversas.username='${username}'`
+      `SELECT roversas.displayName, roversas.roversaID FROM roversas \
+      WHERE className='${className}' \
+      AND username='${username}'`
     );
     return rows;
   } catch (error) {
@@ -60,11 +58,7 @@ export async function addRoversa(
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT IGNORE INTO roversas (displayName, roversaID, username) VALUES ('${displayName}', '${roversaID}', '${username}')`
-    );
-
-    await conn.query(
-      `INSERT INTO roversa_classes (roversaID, className, username) VALUES ('${roversaID}','${className}', '${username}')`
+      `INSERT INTO roversas (displayName, className, roversaID, username) VALUES ('${displayName}','${className}', '${roversaID}', '${username}')`
     );
     return 1;
   } catch (error) {
@@ -102,9 +96,9 @@ export async function getUnassignedRoversaIDs(
   const conn = await pool.getConnection();
   try {
     const unassignedRoversaIDs = await conn.query(
-      `SELECT roversaID from roversa_output WHERE roversaID \
+      `SELECT DISTINCT roversaID from roversa_output WHERE roversaID \
       NOT IN ( \
-      SELECT roversaID FROM roversa_classes \
+      SELECT roversaID FROM roversas \
       WHERE className = "${currentClass}" AND username = "${username}")`
     );
     return unassignedRoversaIDs;
@@ -121,7 +115,7 @@ export async function getBattery(className: string) {
   try {
     const rows =
       await conn.query(`SELECT roversaID, battery from roversa_output WHERE roversaID IN \n
-      (SELECT roversaID FROM roversa_classes WHERE className = '${className}') ORDER BY datetime DESC`);
+      (SELECT roversaID FROM roversas WHERE className = '${className}') ORDER BY datetime DESC`);
     return rows;
   } catch (error) {
     console.log(error);
