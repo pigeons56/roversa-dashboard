@@ -75,6 +75,7 @@ export default function RoversaSection() {
 
   useEffect(() => {
     updateRoversas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, currentClass]);
 
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function RoversaSection() {
 
   useEffect(() => {
     updateBatteryLevel();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   if (isLoading) {

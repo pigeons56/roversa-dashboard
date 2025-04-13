@@ -20,7 +20,7 @@ export default function SidebarLayout({
     if (username == null) {
       router.push("../../");
     }
-  }, [username]);
+  }, [router, username]);
   return (
     <div className={styles.page}>
       <div className={styles.sidebar}>

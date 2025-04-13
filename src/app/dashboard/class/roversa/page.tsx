@@ -1,11 +1,11 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useCookies } from "next-client-cookies";
+//import { useCookies } from "next-client-cookies";
 
-export default function Welcome() {
-  const cookies = useCookies();
-  const username = cookies.get("username");
+export default function Roversa() {
+  //cookies = useCookies();
+  //const username = cookies.get("username");
 
   return (
     <div className={styles.content}>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function RoversaPopup(props: any) {
   const cookies = useCookies();
   const router = useRouter();
@@ -47,6 +48,7 @@ export default function RoversaPopup(props: any) {
 
   useEffect(() => {
     getUnassignedRoversaList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

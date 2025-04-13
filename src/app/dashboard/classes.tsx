@@ -36,6 +36,7 @@ export default function Classes() {
 
   useEffect(() => {
     updateClasses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   if (isLoading) {

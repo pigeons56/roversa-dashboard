@@ -10,7 +10,7 @@ export async function GET() {
     username!,
     currentClass!
   );
-  var json_str = JSON.stringify(unassignedRoversas);
+  const json_str = JSON.stringify(unassignedRoversas);
   cookieStore.set("unassignedRoversas", json_str);
   return NextResponse.json(
     { error: "Successfully retrieved Roversa IDs unassigned to this class." },

@@ -116,7 +116,7 @@ export async function getUnassignedRoversaIDs(
   }
 }
 
-export async function getBattery(className: string, username: string) {
+export async function getBattery(className: string) {
   const conn = await pool.getConnection();
   try {
     const rows =

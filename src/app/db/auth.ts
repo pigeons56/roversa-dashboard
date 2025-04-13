@@ -14,7 +14,7 @@ export async function login(username: string, password: string) {
       return 1;
     }
   } catch (error) {
-    console.log("EROR");
+    console.log(error);
     return -1;
   } finally {
     if (conn) conn.end();
@@ -30,7 +30,7 @@ export async function signup(username: string, password: string) {
     );
     return 1;
   } catch (error) {
-    console.log("EROR");
+    console.log(error);
     return -1;
   } finally {
     if (conn) conn.end();

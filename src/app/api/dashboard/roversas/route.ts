@@ -7,7 +7,7 @@ export async function GET() {
   const username = cookieStore.get("username")?.value;
   const currentClass = cookieStore.get("currentClass")?.value;
   const roversas = await getRoversas(currentClass!, username!);
-  var json_str = JSON.stringify(roversas);
+  const json_str = JSON.stringify(roversas);
   cookieStore.set("roversas", json_str);
   return NextResponse.json(
     { error: "Successfully retrieved roversas." },

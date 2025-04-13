@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ClassPopup(props: any) {
   const router = useRouter();
   async function handleResponse(formInput: FormData) {

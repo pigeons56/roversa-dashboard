@@ -6,7 +6,7 @@ export async function GET() {
   const cookieStore = await cookies();
   const username = cookieStore.get("username")?.value;
   const classes = await getClasses(username!);
-  var json_str = JSON.stringify(classes);
+  const json_str = JSON.stringify(classes);
   cookieStore.set("classes", json_str);
   return NextResponse.json(
     { error: "Successfully retrieved classes." },
