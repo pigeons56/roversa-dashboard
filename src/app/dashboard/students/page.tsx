@@ -2,10 +2,43 @@
 
 import styles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Welcome() {
   const cookies = useCookies();
   const username = cookies.get("username");
+  const [data, setData] = useState<TableData[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const addStudent = searchParams.get("addStudent");
+
+  type TableData = {
+    lastName: string;
+    firstName: string;
+    studentID: number;
+    enrolledClasses: string[];
+    assignedRoversas: string[];
+  };
+
+  function updateStudents() {
+    fetch("../../api/dashboard/students", { method: "GET" }).then(() => {
+      const studentsJSON = JSON.parse(cookies.get("students")!);
+      const arr: TableData[] = [];
+
+      for (let i = 0; i < studentsJSON.length; i++) {
+        const studentID = studentsJSON[i].studentID;
+      }
+
+      //setData(arr);
+      //setLoading(false);
+    });
+  }
+
+  useEffect(() => {
+    updateStudents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
   return (
     <div className={styles.content}>
@@ -37,6 +70,15 @@ export default function Welcome() {
                 <div className={styles.scrollable}>roversa2(class1)</div>
               </td>
             </tr>
+            {/* {data.map((d, i) => (
+              <button
+                key={i}
+                className={styles.button_white}
+              >
+                {d}
+              </button>
+            ))}
+            {addStudent && <AddStudentPopup setLoading={setLoading} />} */}
           </tbody>
         </table>
       </div>
