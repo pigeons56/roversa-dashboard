@@ -114,7 +114,7 @@ export async function getBattery(className: string) {
   const conn = await pool.getConnection();
   try {
     const rows =
-      await conn.query(`SELECT roversaID, battery from roversa_output WHERE roversaID IN \n
+      await conn.query(`SELECT roversaID, battery from roversa_output WHERE roversaID IN \
       (SELECT roversaID FROM roversas WHERE className = '${className}') ORDER BY datetime DESC`);
     return rows;
   } catch (error) {

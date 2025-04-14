@@ -81,7 +81,7 @@ export default function RoversaSection() {
   useEffect(() => {
     setTimeout(() => {
       updateBatteryLevel();
-    }, 50000);
+    }, 10000);
   });
 
   useEffect(() => {

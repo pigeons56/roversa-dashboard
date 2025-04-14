@@ -7,21 +7,30 @@ type ChartData = {
   value: number;
 };
 
-type BarChartProps = {
+type PieChartProps = {
   data: ChartData[];
 };
 
 const COLORS = ["#fc382f", "#FBBC27", "#12bf68"];
 
-const BarChartComponent: React.FC<BarChartProps> = ({ data }) => {
+const BatteryChart: React.FC<PieChartProps> = ({ data }) => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={400} height={400}>
+    <ResponsiveContainer width="70%" height="70%">
+      <PieChart width={200} height={200}>
+        <text
+          x={195}
+          y={15}
+          fill="#3d155c"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          <tspan fontSize="20">Battery Overview</tspan>
+        </text>
         <Pie
           data={data}
           dataKey="value"
-          cx="50%"
-          cy="50%"
+          cx="20%"
+          cy="60%"
           outerRadius={60}
           label
         >
@@ -34,4 +43,4 @@ const BarChartComponent: React.FC<BarChartProps> = ({ data }) => {
   );
 };
 
-export default BarChartComponent;
+export default BatteryChart;
