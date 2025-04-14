@@ -7,38 +7,110 @@ import { useSearchParams } from "next/navigation";
 
 export default function Welcome() {
   const cookies = useCookies();
-  const username = cookies.get("username");
   const [data, setData] = useState<TableData[]>([]);
-  const [isLoading, setLoading] = useState(true);
+  const [studentIDs, setStudentIDs] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const addStudent = searchParams.get("addStudent");
+  const [isLoading, setLoading] = useState(true);
 
   type TableData = {
     lastName: string;
     firstName: string;
     studentID: number;
-    enrolledClasses: string[];
-    assignedRoversas: string[];
+    enrolledClasses: string;
+    assignedRoversas: string;
   };
 
-  function updateStudents() {
+  function fetchStudentIDs() {
     fetch("../../api/dashboard/students", { method: "GET" }).then(() => {
       const studentsJSON = JSON.parse(cookies.get("students")!);
-      const arr: TableData[] = [];
-
+      const arr: string[] = [];
       for (let i = 0; i < studentsJSON.length; i++) {
-        const studentID = studentsJSON[i].studentID;
+        arr.push(studentsJSON[i].studentID);
       }
-
-      //setData(arr);
-      //setLoading(false);
+      setStudentIDs(arr);
     });
   }
 
+  async function setTable() {
+    const arr: TableData[] = [];
+    for (let i = 0; i < studentIDs.length; i++) {
+      const response = await fetch("../../api/dashboard/students", {
+        method: "POST",
+        body: JSON.stringify({ studentID: studentIDs[i] }),
+      });
+
+      if (response.ok) {
+        const namesJSON = JSON.parse(cookies.get("studentName")!);
+        const firstName = namesJSON[0].firstName;
+        const lastName = namesJSON[0].lastName;
+        const studentID = parseInt(studentIDs[i]);
+
+        const studentRoversasJSON = JSON.parse(cookies.get("studentRoversas")!);
+        let studentRoversas = "";
+        for (let j = 0; j < studentRoversasJSON.length; j++) {
+          studentRoversas += `${studentRoversasJSON[j].roversaName} (${studentRoversasJSON[j].className}), `;
+        }
+
+        // strip last 2 chars
+        studentRoversas = studentRoversas.substring(
+          0,
+          studentRoversas.length - 2
+        );
+
+        const studentClassesJSON = JSON.parse(cookies.get("studentClasses")!);
+        let studentClasses = "";
+        for (let j = 0; j < studentClassesJSON.length; j++) {
+          studentClasses += `${studentClassesJSON[j].className}, `;
+        }
+
+        // strip last 2 chars
+        studentClasses = studentClasses.substring(0, studentClasses.length - 2);
+
+        const studentData: TableData = {
+          lastName: lastName,
+          firstName: firstName,
+          studentID: studentID,
+          enrolledClasses: studentClasses,
+          assignedRoversas: studentRoversas,
+        };
+        arr.push(studentData);
+      } else {
+        // Handle errors
+        console.log(response.status);
+      }
+      setData(arr);
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    updateStudents();
+    fetchStudentIDs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
+
+  useEffect(() => {
+    setTable();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, studentIDs]);
+
+  if (isLoading) {
+    return (
+      <div className={styles.content}>
+        <div className={styles.title}>My Students</div>
+        <div className={styles.section}>Loading...</div>
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className={styles.content}>
+        <div className={styles.title}>My Students</div>
+        <div className={styles.section}>No students yet!</div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.content}>
@@ -53,32 +125,25 @@ export default function Welcome() {
               <th style={{ width: "25%" }}>Enrolled Classes</th>
               <th style={{ width: "25%" }}>Assigned Roversas</th>
             </tr>
-            <tr>
-              <td>
-                <div className={styles.scrollable}>John</div>
-              </td>
-              <td>
-                <div className={styles.scrollable}>Doe</div>
-              </td>
-              <td>
-                <div className={styles.scrollable}>1</div>
-              </td>
-              <td>
-                <div className={styles.scrollable}>class1, class2</div>
-              </td>
-              <td>
-                <div className={styles.scrollable}>roversa2(class1)</div>
-              </td>
-            </tr>
-            {/* {data.map((d, i) => (
-              <button
-                key={i}
-                className={styles.button_white}
-              >
-                {d}
-              </button>
+            {data.map((d, i) => (
+              <tr key={i}>
+                <td>
+                  <div className={styles.scrollable}>{d.firstName}</div>
+                </td>
+                <td>
+                  <div className={styles.scrollable}>{d.lastName}</div>
+                </td>
+                <td>
+                  <div className={styles.scrollable}>{d.studentID}</div>
+                </td>
+                <td>
+                  <div className={styles.scrollable}>{d.enrolledClasses}</div>
+                </td>
+                <td>
+                  <div className={styles.scrollable}>{d.assignedRoversas}</div>
+                </td>
+              </tr>
             ))}
-            {addStudent && <AddStudentPopup setLoading={setLoading} />} */}
           </tbody>
         </table>
       </div>
