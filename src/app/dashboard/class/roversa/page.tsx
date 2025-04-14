@@ -1,15 +1,16 @@
 "use client";
 
 import styles from "./page.module.css";
-//import { useCookies } from "next-client-cookies";
+import { useCookies } from "next-client-cookies";
 
 export default function Roversa() {
-  //cookies = useCookies();
-  //const username = cookies.get("username");
+  const cookies = useCookies();
+  const username = cookies.get("username");
+  const currentRoversa = cookies.get("currentRoversa");
 
   return (
-    <div className={styles.content}>
-      <div className={styles.title_centered}>temp</div>
+    <div>
+      <div className={styles.title}>Roversa {currentRoversa}</div>
     </div>
   );
 }
