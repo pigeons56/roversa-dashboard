@@ -34,7 +34,11 @@ export default function SidebarLayout({
           />
         </div>
         <div>
-          <button type="button" className={styles.button_purple}>
+          <button
+            type="button"
+            className={styles.button_purple}
+            onClick={() => router.push("/dashboard/students")}
+          >
             My Students
           </button>
         </div>

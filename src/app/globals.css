@@ -54,3 +54,22 @@ select:invalid,
 select option[value=""] {
   color: var(--gray);
 }
+
+th, td, tr {
+  padding: 15px;
+  text-align: center;
+  table-layout:fixed;
+  text-overflow: ellipsis; 
+  overflow-x: hidden;
+}
+
+tr:hover {
+  background-color: var(--light-purple);
+}
+
+table {
+  width: 100%;
+  table-layout:fixed;
+  text-overflow: ellipsis; 
+  overflow-x: hidden;
+}
