@@ -9,7 +9,7 @@
 .section {
   display: block;
   background-color: var(--white);
-  font-size: var(--font-size2);
+  font-size: var(--font-size5);
   border-radius: var(--border-radius);
   height: 300px;
   padding: 20px;

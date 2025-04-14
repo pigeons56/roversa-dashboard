@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import RoversaSection from "./roversa-section";
+import OverviewSection from "./overview-section";
 
 export default function Class() {
   const cookies = useCookies();
@@ -15,7 +16,7 @@ export default function Class() {
         <button className={styles.button_yellow}>Edit Class</button>
         <button className={styles.button_yellow}>Edit Students</button>
       </div>
-      <div className={styles.section}>Class Overview</div>
+      <OverviewSection />
       <RoversaSection />
     </div>
   );
