@@ -11,6 +11,7 @@ export default function Students() {
   const [studentIDs, setStudentIDs] = useState<string[]>([]);
   const searchParams = useSearchParams();
   const addStudent = searchParams.get("addStudent");
+  const [isWaitingForStudentData, setWaitingForStudentData] = useState(true);
   const [isLoading, setLoading] = useState(true);
 
   type TableData = {
@@ -29,6 +30,8 @@ export default function Students() {
         arr.push(studentsJSON[i].studentID);
       }
       setStudentIDs(arr);
+      setLoading(false);
+      setWaitingForStudentData(false);
     });
   }
 
@@ -79,9 +82,9 @@ export default function Students() {
         // Handle errors
         console.log(response.status);
       }
-      setData(arr);
-      setLoading(false);
     }
+    setData(arr);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -92,18 +95,16 @@ export default function Students() {
   useEffect(() => {
     setTable();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, studentIDs]);
+  }, [isWaitingForStudentData]);
 
-  if (isLoading) {
+  if (isLoading || isWaitingForStudentData) {
     return (
       <div className={styles.content}>
         <div className={styles.title}>My Students</div>
         <div className={styles.section}>Loading...</div>
       </div>
     );
-  }
-
-  if (data.length === 0) {
+  } else if (data.length === 0) {
     return (
       <div className={styles.content}>
         <div className={styles.title}>My Students</div>
