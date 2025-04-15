@@ -5,7 +5,7 @@ import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function Welcome() {
+export default function Students() {
   const cookies = useCookies();
   const [data, setData] = useState<TableData[]>([]);
   const [studentIDs, setStudentIDs] = useState<string[]>([]);

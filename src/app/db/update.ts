@@ -110,6 +110,23 @@ export async function getUnassignedRoversaIDs(
   }
 }
 
+// get output of 1 roversa
+export async function getRoversaOutput(roversaID: number) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT program,button,battery,DATE_FORMAT(datetime, '%m/%d/%Y %H:%i') FROM roversa_output WHERE roversaID = ${roversaID} ORDER BY datetime DESC`
+    );
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
 export async function getBattery(className: string) {
   const conn = await pool.getConnection();
   try {
