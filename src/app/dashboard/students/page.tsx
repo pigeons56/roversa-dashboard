@@ -4,6 +4,8 @@ import styles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import StudentsPopup from "./students-popup";
+import Link from "next/link";
 
 export default function Students() {
   const cookies = useCookies();
@@ -84,10 +86,10 @@ export default function Students() {
       }
     }
     setData(arr);
-    setLoading(false);
   }
 
   useEffect(() => {
+    setWaitingForStudentData(true);
     fetchStudentIDs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
@@ -108,6 +110,7 @@ export default function Students() {
     return (
       <div className={styles.content}>
         <div className={styles.title}>My Students</div>
+        {addStudent && <StudentsPopup setLoading={setLoading} />}
         <div className={styles.section}>No students yet!</div>
       </div>
     );
@@ -116,9 +119,12 @@ export default function Students() {
   return (
     <div className={styles.content}>
       <div className={styles.title}>My Students</div>
-      <button className={styles.button_normal}>Add</button>
+      <Link className={styles.button_normal} href="?addStudent=true">
+        Add
+      </Link>
       <button className={styles.button_normal}>Edit</button>
       <button className={styles.button_remove}>Remove</button>
+      {addStudent && <StudentsPopup setLoading={setLoading} />}
       <div className={styles.section}>
         <table>
           <tbody>

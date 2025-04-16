@@ -64,3 +64,23 @@ export async function getStudentName(studentID: number, username: string) {
     if (conn) conn.end();
   }
 }
+
+export async function addStudent(
+  firstName: string,
+  lastName: string,
+  studentID: number,
+  username: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(
+      `INSERT INTO students (firstName, lastName, studentID, username) VALUES ("${firstName}", "${lastName}",${studentID}, "${username}")`
+    );
+    return 1;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}

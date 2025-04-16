@@ -14,7 +14,7 @@ export async function GET() {
   const json_str = JSON.stringify(students);
   cookieStore.set("students", json_str);
   return NextResponse.json(
-    { error: "Successfully retrieved students." },
+    { error: "Successfully retrieved studentIDs." },
     { status: 200 }
   );
 }
