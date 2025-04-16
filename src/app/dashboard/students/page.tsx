@@ -116,6 +116,9 @@ export default function Students() {
   return (
     <div className={styles.content}>
       <div className={styles.title}>My Students</div>
+      <button className={styles.button_normal}>Add</button>
+      <button className={styles.button_normal}>Edit</button>
+      <button className={styles.button_remove}>Remove</button>
       <div className={styles.section}>
         <table>
           <tbody>

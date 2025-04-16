@@ -26,3 +26,43 @@ div.scrollable {
   padding: 0;
   overflow: auto;
 }
+
+.button_normal {
+  display: inline-block;
+  font-size: var(--font-size5);
+  color: var(--white);
+  background-color: var(--purple);
+  padding-top: .7em;
+  padding-bottom: .7em;
+  width: 150px;
+  margin-left: .2em;
+  margin-right: .2em;
+  margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+.button_normal:hover:not(.active) {
+  background-color: var(--yellow);
+}
+
+.button_remove {
+  display: inline-block;
+  font-size: var(--font-size5);
+  color: var(--white);
+  background-color: var(--purple);
+  padding-top: .7em;
+  padding-bottom: .7em;
+  width: 150px;
+  margin-left: .2em;
+  margin-right: .2em;
+  margin-bottom: .5em;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+}
+
+.button_remove:hover:not(.active) {
+  background-color: var(--red);
+}

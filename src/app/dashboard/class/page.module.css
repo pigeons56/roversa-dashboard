@@ -27,23 +27,24 @@
   align-items: center;
 }
 
-.button_yellow {
-  display: block;
+.button_normal {
+  display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
-  background-color: var(--yellow);
+  background-color: var(--purple);
   padding-top: .7em;
   padding-bottom: .7em;
-  width: 200px;
+  width: 150px;
+  margin-left: .2em;
+  margin-right: .2em;
   margin-bottom: .5em;
   border-radius: var(--border-radius);
   border-style: none;
   text-align: center;
 }
 
-/* Active/current link */
-.button_yellow.active {
-  background-color: var(--purple);
+.button_normal:hover:not(.active) {
+  background-color: var(--yellow);
 }
 
 .roversa_card {
