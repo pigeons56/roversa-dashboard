@@ -18,8 +18,8 @@ const BatteryChart: React.FC<PieChartProps> = ({ data }) => {
     <ResponsiveContainer width="70%" height="70%">
       <PieChart width={200} height={200}>
         <text
-          x={195}
-          y={15}
+          x="21%"
+          y="10%"
           fill="#3d155c"
           textAnchor="middle"
           dominantBaseline="central"
