@@ -41,11 +41,16 @@ export default function Roversa() {
   }
 
   useEffect(() => {
+    fetchRoversaOutput();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
     }, 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  });
 
   if (isLoading) {
     return (
