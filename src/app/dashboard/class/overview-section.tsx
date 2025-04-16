@@ -45,7 +45,7 @@ export default function OverviewSection() {
   useEffect(() => {
     setTimeout(() => {
       updateBatteryData();
-    }, 5000);
+    }, 3000);
   });
 
   return (

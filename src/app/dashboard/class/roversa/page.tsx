@@ -43,7 +43,7 @@ export default function Roversa() {
   useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
-    }, 7000);
+    }, 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
