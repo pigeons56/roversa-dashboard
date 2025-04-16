@@ -90,7 +90,9 @@ export default function Roversa() {
                   <div className={styles.scrollable}>{d.program}</div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.battery}</div>
+                  <div className={styles.scrollable}>
+                    %{((d.battery / 5.1) * 100).toFixed(0)}
+                  </div>
                 </td>
               </tr>
             ))}
