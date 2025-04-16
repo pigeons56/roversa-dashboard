@@ -110,6 +110,9 @@ export default function Students() {
     return (
       <div className={styles.content}>
         <div className={styles.title}>My Students</div>
+        <Link className={styles.button_normal} href="?addStudent=true">
+          Add
+        </Link>
         {addStudent && <StudentsPopup setLoading={setLoading} />}
         <div className={styles.section}>No students yet!</div>
       </div>
