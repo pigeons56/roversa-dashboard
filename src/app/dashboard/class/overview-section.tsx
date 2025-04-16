@@ -49,7 +49,7 @@ export default function OverviewSection() {
   useEffect(() => {
     setTimeout(() => {
       updateBatteryData();
-    }, 8000);
+    }, 5000);
   });
 
   return (
