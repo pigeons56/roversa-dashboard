@@ -117,7 +117,6 @@ export async function getRoversaOutput(roversaID: number) {
     const rows = await conn.query(
       `SELECT program,button,battery,DATE_FORMAT(datetime, '%m/%d/%Y %H:%i') FROM roversa_output WHERE roversaID = ${roversaID} ORDER BY datetime DESC`
     );
-    console.log(rows);
     return rows;
   } catch (error) {
     console.log(error);

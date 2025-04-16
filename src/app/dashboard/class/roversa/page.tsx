@@ -45,7 +45,7 @@ export default function Roversa() {
     setTimeout(() => {
       fetchRoversaOutput();
     }, 10000);
-  });
+  }, [isLoading]);
 
   if (isLoading) {
     return (
