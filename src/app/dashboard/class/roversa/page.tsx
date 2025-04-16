@@ -3,7 +3,6 @@
 import styles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 
 export default function Roversa() {
   const cookies = useCookies();
@@ -44,7 +43,8 @@ export default function Roversa() {
   useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
-    }, 10000);
+    }, 7000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   if (isLoading) {

@@ -3,10 +3,6 @@
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
-import Link from "next/link";
-import RoversaPopup from "./roversa-popup";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import BatteryChart from "./battery-chart";
 
 export default function OverviewSection() {

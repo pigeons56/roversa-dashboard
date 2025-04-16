@@ -1,16 +1,9 @@
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCookies } from "next-client-cookies";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function StudentsPopup(props: any) {
-  const cookies = useCookies();
   const router = useRouter();
-  const [roversas, setRoversas] = useState<string[]>([]);
-  const [classes, setClasses] = useState<string[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  const [isGettingClasses, setGettingClasses] = useState(true);
 
   async function handleResponse(formInput: FormData) {
     const firstName = (
@@ -34,25 +27,6 @@ export default function StudentsPopup(props: any) {
       console.log(response.status);
     }
   }
-
-  function updateClasses() {
-    fetch("../../api/dashboard/classes", { method: "GET" }).then(() => {
-      const classesJSON = JSON.parse(cookies.get("classes")!);
-      const arr: string[] = [];
-
-      for (let i = 0; i < classesJSON.length; i++) {
-        arr.push(classesJSON[i].className);
-      }
-
-      setClasses(arr);
-      setLoading(false);
-    });
-  }
-
-  useEffect(() => {
-    updateClasses();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
 
   return (
     <div className={styles.popup_box}>

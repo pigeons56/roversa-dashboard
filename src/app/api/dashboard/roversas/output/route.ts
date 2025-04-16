@@ -5,6 +5,7 @@ import { getRoversaOutput } from "@/app/db/update";
 export async function GET() {
   const cookieStore = await cookies();
   const roversaName = cookieStore.get("currentRoversa")?.value;
+  // eslint-disable-next-line  @typescript-eslint/no-non-null-asserted-optional-chain
   const roversas = JSON.parse(cookieStore.get("roversas")?.value!);
   let roversaID = 0;
 
