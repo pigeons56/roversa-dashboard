@@ -135,15 +135,23 @@ export default function RoversaSection() {
       <div>
         {addRoversa && <RoversaPopup setLoading={setLoading} />}
         {data.map((d, i) => (
-          <button
-            onClick={() => handleClick(d, i)}
+          <span
             key={i}
             className={styles.roversa_card}
             style={{ backgroundColor: `var(--${roversaCardColor[i]})` }}
           >
             {d}
             <div> Battery: {batteryData[i]} </div>
-          </button>
+            <button
+              onClick={() => handleClick(d, i)}
+              className={styles.roversa_card_button}
+            >
+              View Output Log
+            </button>
+            <button onClick={() => {}} className={styles.roversa_card_button}>
+              Mark as Done
+            </button>
+          </span>
         ))}
       </div>
     </div>

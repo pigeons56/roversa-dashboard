@@ -62,10 +62,6 @@
   color: var(--white);
 }
 
-.roversa_card:hover:not(.active) {
-  filter: brightness(80%);
-}
-
 .add_button {
   display: inline-block;
   font-size: var(--font-size5);
@@ -167,4 +163,27 @@ background-color: var(--yellow);
   
 .popup_refresh_button:hover:not(.active) {
   background-color: var(--yellow);
+}
+
+.roversa_card_button {
+  display: block;
+  font-size: var(--font-size6);
+  color: var(--white);
+  background-color: var(--purple);
+  padding-top: .2em;
+  padding-bottom: .2em;
+  width: 150px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+}
+
+/* Links on mouse-over */
+.roversa_card_button:hover:not(.active) {
+background-color: var(--dark-purple);
 }
