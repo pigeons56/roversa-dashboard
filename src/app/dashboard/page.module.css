@@ -120,8 +120,8 @@ color: var(--white);
 .new_circle {
   display: block;
   font-size: var(--font-size5);
-  color: var(--purple);
-  background-color: var(--white);
+  color: var(--white);
+  background-color: var(--green);
   margin-bottom: .5em;
   border-radius: var(--border-radius);
   border-style: none;

@@ -53,7 +53,7 @@ export default function RoversaPopup(props: any) {
 
   return (
     <div className={styles.popup_box}>
-      <div>Add Roversa</div>
+      <div>Connect Roversa</div>
       <form action={handleResponse}>
         <div>
           <input

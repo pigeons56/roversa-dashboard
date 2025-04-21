@@ -57,7 +57,7 @@ export default function Classes() {
           scroll={false}
           className={styles.new_circle}
         >
-          +
+          Create New Class
         </Link>
       </div>
     );
@@ -80,7 +80,7 @@ export default function Classes() {
         scroll={false}
         className={styles.new_circle}
       >
-        +
+        Create New Class
       </Link>
     </div>
   );

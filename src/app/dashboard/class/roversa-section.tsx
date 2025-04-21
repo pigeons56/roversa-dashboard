@@ -42,7 +42,7 @@ export default function RoversaSection() {
               else if (batteryPercent > 40) color_arr[i] = "yellow";
               else color_arr[i] = "red";
 
-              battery_arr[i] = "%" + batteryPercent.toFixed(0);
+              battery_arr[i] = batteryPercent.toFixed(0) + "%";
               break;
             }
           }
@@ -75,13 +75,14 @@ export default function RoversaSection() {
 
   useEffect(() => {
     updateRoversas();
+    updateBatteryLevel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, currentClass]);
 
   useEffect(() => {
     setTimeout(() => {
       updateBatteryLevel();
-    }, 7000);
+    }, 20000);
   });
 
   useEffect(() => {
@@ -108,7 +109,7 @@ export default function RoversaSection() {
             className={styles.add_button}
             scroll={false}
           >
-            +
+            Connect Roversa
           </Link>
         </div>
         {addRoversa && <RoversaPopup setLoading={setLoading} />}
@@ -126,7 +127,7 @@ export default function RoversaSection() {
           scroll={false}
           className={styles.add_button}
         >
-          +
+          Connect Roversa
         </Link>
       </div>
       <div>
@@ -139,7 +140,7 @@ export default function RoversaSection() {
             style={{ backgroundColor: `var(--${roversaCardColor[i]})` }}
           >
             {d}
-            <div> {batteryData[i]} </div>
+            <div> Battery: {batteryData[i]} </div>
           </button>
         ))}
       </div>

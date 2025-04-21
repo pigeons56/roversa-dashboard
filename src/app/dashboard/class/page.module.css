@@ -70,12 +70,13 @@
   display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
-  background-color: var(--purple);
-  height: 30px;
-  width: 30px;
+  background-color: var(--green);
+  padding-top: .2em;
+  padding-bottom: .2em;
+  width: 170px;
   margin-left: 20px;
   margin-right: 20px;
-  border-radius: 50%;
+  border-radius: var(--border-radius);
   border-style: none;
   text-align: center;
   align-items: center;

@@ -15,16 +15,27 @@ const COLORS = ["#fc382f", "#FBBC27", "#12bf68"];
 
 const BatteryChart: React.FC<PieChartProps> = ({ data }) => {
   return (
-    <ResponsiveContainer width="70%" height="70%">
+    <ResponsiveContainer width="70%" height="80%">
       <PieChart width={200} height={200}>
         <text
           x="21%"
-          y="10%"
+          y="7%"
           fill="#3d155c"
           textAnchor="middle"
           dominantBaseline="central"
         >
           <tspan fontSize="20">Battery Overview</tspan>
+        </text>
+        <text
+          x="21%"
+          y="15%"
+          fill="#3d155c"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          <tspan fontSize="16">
+            (Number of Roversas at each battery level)
+          </tspan>
         </text>
         <Pie
           data={data}

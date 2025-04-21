@@ -42,7 +42,7 @@ export default function SidebarLayout({
             My Students
           </button>
         </div>
-        <div className={styles.my_classes_label}>My Classes</div>
+        <div className={styles.my_classes_label}>My Classes List</div>
         <Classes />
       </div>
       <div className={styles.content}>{children}</div>
