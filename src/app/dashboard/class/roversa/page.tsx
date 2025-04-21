@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export default function Roversa() {
   const cookies = useCookies();
   const roversaName = cookies.get("currentRoversa");
+  const roversaID = cookies.get("currentRoversaID");
   const [data, setData] = useState<TableData[]>([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -48,7 +49,7 @@ export default function Roversa() {
   useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
-    }, 3000);
+    }, 20000);
   });
 
   if (isLoading) {
@@ -63,7 +64,9 @@ export default function Roversa() {
   if (data.length === 0) {
     return (
       <div className={styles.content}>
-        <div className={styles.title}>Roversa {roversaName}</div>
+        <div className={styles.title}>
+          Roversa {roversaName} (ID: {roversaID})
+        </div>
         <div className={styles.section}>No data yet!</div>
       </div>
     );
@@ -71,7 +74,9 @@ export default function Roversa() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.title}>Roversa {roversaName}</div>
+      <div className={styles.title}>
+        Roversa {roversaName} (ID: {roversaID})
+      </div>
       <div className={styles.section}>
         <div className={styles.section_header}>Output</div>
         <table>

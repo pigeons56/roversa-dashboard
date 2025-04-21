@@ -68,7 +68,9 @@ export default function RoversaSection() {
     });
   }
 
-  function handleClick(d: string) {
+  function handleClick(d: string, i: number) {
+    const roversasJSON = JSON.parse(cookies.get("roversas")!);
+    cookies.set("currentRoversaID", roversasJSON[i].roversaID);
     cookies.set("currentRoversa", d);
     router.push("/dashboard/class/roversa");
   }
@@ -134,7 +136,7 @@ export default function RoversaSection() {
         {addRoversa && <RoversaPopup setLoading={setLoading} />}
         {data.map((d, i) => (
           <button
-            onClick={() => handleClick(d)}
+            onClick={() => handleClick(d, i)}
             key={i}
             className={styles.roversa_card}
             style={{ backgroundColor: `var(--${roversaCardColor[i]})` }}
