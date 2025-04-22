@@ -23,9 +23,10 @@ export default function OverviewSection() {
     for (let i = 0; i < roversasJSON.length; i++) {
       for (let j = 0; j < batteryJSON.length; j++) {
         if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
-          let batteryPercent = (parseFloat(batteryJSON[j].battery) / 5.1) * 100;
+          let batteryDecimal = (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
+          let batteryPercent = batteryDecimal * 100;
           if (batteryPercent > 100) batteryPercent = 100;
-
+          if (batteryPercent < 0) batteryPercent = 0;
           // Set color according to battery
           if (batteryPercent > 70) high++;
           else if (batteryPercent > 40) mid++;

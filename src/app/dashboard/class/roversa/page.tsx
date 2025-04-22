@@ -49,7 +49,7 @@ export default function Roversa() {
   useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
-    }, 20000);
+    }, 10000);
   });
 
   if (isLoading) {
@@ -100,7 +100,12 @@ export default function Roversa() {
                 </td>
                 <td>
                   <div className={styles.scrollable}>
-                    {((d.battery / 5.1) * 100).toFixed(0)}%
+                    {d.battery < 3.4
+                      ? 0
+                      : d.battery > 3.6
+                      ? 100
+                      : (((d.battery - 3.4) / 0.2) * 100).toFixed(0)}
+                    %
                   </div>
                 </td>
               </tr>
