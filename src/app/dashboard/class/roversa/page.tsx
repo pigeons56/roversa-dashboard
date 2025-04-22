@@ -49,7 +49,7 @@ export default function Roversa() {
   useEffect(() => {
     setTimeout(() => {
       fetchRoversaOutput();
-    }, 10000);
+    }, 5000);
   });
 
   if (isLoading) {
