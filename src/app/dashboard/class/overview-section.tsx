@@ -23,7 +23,8 @@ export default function OverviewSection() {
     for (let i = 0; i < roversasJSON.length; i++) {
       for (let j = 0; j < batteryJSON.length; j++) {
         if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
-          let batteryDecimal = (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
+          const batteryDecimal =
+            (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
           let batteryPercent = batteryDecimal * 100;
           if (batteryPercent > 100) batteryPercent = 100;
           if (batteryPercent < 0) batteryPercent = 0;
