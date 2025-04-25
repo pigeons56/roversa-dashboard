@@ -21,7 +21,7 @@ export default function LoginForm() {
     });
 
     if (response.ok) {
-      router.push("../../../dashboard/welcome");
+      router.push("/dashboard/welcome");
     } else {
       // Handle errors
       console.log(response.status);

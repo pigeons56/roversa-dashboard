@@ -21,7 +21,7 @@ export default function SignupForm() {
     });
 
     if (response.ok) {
-      router.push("../../../dashboard/welcome");
+      router.push("/dashboard/welcome");
     } else {
       // Handle errors
       console.log(response.status);
@@ -52,7 +52,7 @@ export default function SignupForm() {
         <button type="submit" className={styles.submit_button}>
           Create Account
         </button>
-        <Link href={"../../"} className={styles.link}>
+        <Link href={"/"} className={styles.link}>
           Login
         </Link>
       </div>
