@@ -31,7 +31,8 @@
 .button_purple, 
 .button_white,
 .button_red,
-.button_create {
+.button_create,
+.button_dpurple {
   display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
@@ -49,16 +50,18 @@
   text-decoration: none;
 }
 
-/* White button */
 .button_white {
   color: var(--purple);
   background-color: var(--white);
 }
 
-/* Red button */
 .button_red {
     background-color: var(--red);
   }
+
+.button_dpurple {
+  background-color: var(--dark-purple);
+}
 
 .button_create {
     margin-left: .5em;
@@ -72,6 +75,7 @@
 .button_purple:hover:not(.active),
 .button_white:hover:not(.active),
 .button_red:hover:not(.active),
+.button_dpurple:hover:not(.active),
 .button_create:hover:not(.active) {
   background-color: var(--yellow);
   color: var(--white);
