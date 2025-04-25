@@ -33,9 +33,7 @@ const BatteryChart: React.FC<PieChartProps> = ({ data }) => {
           textAnchor="middle"
           dominantBaseline="central"
         >
-          <tspan fontSize="16">
-            (Number of Roversas at each battery level)
-          </tspan>
+          <tspan fontSize="16">(Number of Robots at each battery level)</tspan>
         </text>
         <Pie
           data={data}

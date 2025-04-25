@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function RoversaPopup(props: any) {
+export default function RobotPopup(props: any) {
   const cookies = useCookies();
   const router = useRouter();
   const [data, setData] = useState<string[]>([]);
@@ -13,13 +13,11 @@ export default function RoversaPopup(props: any) {
     const displayName = (
       formInput.get("displayName") as FormDataEntryValue
     ).toString();
-    const roversaID = (
-      formInput.get("roversaID") as FormDataEntryValue
-    ).toString();
+    const robotID = (formInput.get("robotID") as FormDataEntryValue).toString();
 
-    const response = await fetch("/api/dashboard/roversas", {
+    const response = await fetch("/api/dashboard/robots", {
       method: "POST",
-      body: JSON.stringify({ displayName, roversaID }),
+      body: JSON.stringify({ displayName, robotID }),
     });
 
     if (response.ok) {
@@ -31,15 +29,13 @@ export default function RoversaPopup(props: any) {
     }
   }
 
-  function getUnassignedRoversaList() {
+  function getUnassignedRobotList() {
     fetch("/api/esp32", { method: "GET" }).then(() => {
-      const unassignedRoversasJSON = JSON.parse(
-        cookies.get("unassignedRoversas")!
-      );
+      const unassignedRobotsJSON = JSON.parse(cookies.get("unassignedRobots")!);
       const arr: string[] = [];
 
-      for (let i = 0; i < unassignedRoversasJSON.length; i++) {
-        arr.push(unassignedRoversasJSON[i].roversaID);
+      for (let i = 0; i < unassignedRobotsJSON.length; i++) {
+        arr.push(unassignedRobotsJSON[i].robotID);
       }
 
       setData(arr);
@@ -47,13 +43,13 @@ export default function RoversaPopup(props: any) {
   }
 
   useEffect(() => {
-    getUnassignedRoversaList();
+    getUnassignedRobotList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className={dashboardStyles.popup_box_lipurple}>
-      <div>Connect Roversa</div>
+      <div>Connect Robot</div>
       <form action={handleResponse}>
         <div>
           <input
@@ -68,13 +64,13 @@ export default function RoversaPopup(props: any) {
         </div>
         <div>
           <select
-            name="roversaID"
+            name="robotID"
             required
             defaultValue=""
             className={dashboardStyles.popup_input}
           >
             <option value="" disabled hidden>
-              RoversaID
+              RobotID
             </option>
             {data.map((d, i) => (
               <option key={i} value={d}>
@@ -85,7 +81,7 @@ export default function RoversaPopup(props: any) {
         </div>
         <button
           type="button"
-          onClick={getUnassignedRoversaList}
+          onClick={getUnassignedRobotList}
           className={dashboardStyles.popup_button_purple}
         >
           Refresh

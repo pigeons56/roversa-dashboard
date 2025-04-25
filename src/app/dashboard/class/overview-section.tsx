@@ -15,14 +15,14 @@ export default function OverviewSection() {
   };
 
   function updateBatteryData() {
-    const roversasJSON = JSON.parse(cookies.get("roversas")!);
+    const robotsJSON = JSON.parse(cookies.get("robots")!);
     const batteryJSON = JSON.parse(cookies.get("battery")!);
     let high = 0;
     let mid = 0;
     let low = 0;
-    for (let i = 0; i < roversasJSON.length; i++) {
+    for (let i = 0; i < robotsJSON.length; i++) {
       for (let j = 0; j < batteryJSON.length; j++) {
-        if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
+        if (batteryJSON[j].robotID == robotsJSON[i].robotID) {
           const batteryDecimal =
             (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
           let batteryPercent = batteryDecimal * 100;

@@ -5,33 +5,33 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";
-import RoversaPopup from "./roversa-popup";
+import RobotPopup from "./robot-popup";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-export default function RoversaSection() {
+export default function RobotSection() {
   const cookies = useCookies();
   const currentClass = cookies.get("currentClass");
   const [data, setData] = useState<string[]>([]);
   const [batteryData, setBatteryData] = useState<string[]>([]);
-  const [roversaCardColor, setroversaCardColor] = useState<string[]>([]);
+  const [robotCardColor, setrobotCardColor] = useState<string[]>([]);
   const [isLoading, setLoading] = useState(true);
   const searchParams = useSearchParams();
-  const addRoversa = searchParams.get("addRoversa");
+  const addRobot = searchParams.get("addRobot");
   const router = useRouter();
 
   function updateBatteryLevel() {
-    fetch("/api/dashboard/roversas/battery", { method: "GET" }).then(() => {
-      const roversasJSON = JSON.parse(cookies.get("roversas")!);
+    fetch("/api/dashboard/robots/battery", { method: "GET" }).then(() => {
+      const robotsJSON = JSON.parse(cookies.get("robots")!);
       const batteryJSON = JSON.parse(cookies.get("battery")!);
       const battery_arr: string[] = [];
       const color_arr: string[] = [];
 
-      for (let i = 0; i < roversasJSON.length; i++) {
+      for (let i = 0; i < robotsJSON.length; i++) {
         battery_arr.push("Data Not Found");
         color_arr.push("gray");
         for (let j = 0; j < batteryJSON.length; j++) {
-          if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
+          if (batteryJSON[j].robotID == robotsJSON[i].robotID) {
             // Set battery percent
             const batteryDecimal =
               (parseFloat(batteryJSON[j].battery) - 3.4) / 0.25;
@@ -51,17 +51,17 @@ export default function RoversaSection() {
       }
 
       setBatteryData(battery_arr);
-      setroversaCardColor(color_arr);
+      setrobotCardColor(color_arr);
     });
   }
 
-  function updateRoversas() {
-    fetch("/api/dashboard/roversas", { method: "GET" }).then(() => {
-      const roversasJSON = JSON.parse(cookies.get("roversas")!);
+  function updateRobots() {
+    fetch("/api/dashboard/robots", { method: "GET" }).then(() => {
+      const robotsJSON = JSON.parse(cookies.get("robots")!);
       const arr: string[] = [];
 
-      for (let i = 0; i < roversasJSON.length; i++) {
-        arr.push(roversasJSON[i].displayName);
+      for (let i = 0; i < robotsJSON.length; i++) {
+        arr.push(robotsJSON[i].displayName);
       }
 
       setData(arr);
@@ -70,14 +70,14 @@ export default function RoversaSection() {
   }
 
   function handleClick(d: string, i: number) {
-    const roversasJSON = JSON.parse(cookies.get("roversas")!);
-    cookies.set("currentRoversaID", roversasJSON[i].roversaID);
-    cookies.set("currentRoversa", d);
-    router.push("/dashboard/class/roversa");
+    const robotsJSON = JSON.parse(cookies.get("robots")!);
+    cookies.set("currentRobotID", robotsJSON[i].robotID);
+    cookies.set("currentRobot", d);
+    router.push("/dashboard/class/robot");
   }
 
   useEffect(() => {
-    updateRoversas();
+    updateRobots();
     updateBatteryLevel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, currentClass]);
@@ -96,7 +96,7 @@ export default function RoversaSection() {
   if (isLoading) {
     return (
       <div className={dashboardStyles.section}>
-        <div className={dashboardStyles.section_header}>Roversas</div>
+        <div className={dashboardStyles.section_header}>Robots</div>
         <h5>Loading...</h5>
       </div>
     );
@@ -106,17 +106,17 @@ export default function RoversaSection() {
     return (
       <div className={dashboardStyles.section}>
         <div className={dashboardStyles.section_header}>
-          Roversas
+          Robots
           <Link
-            href="?addRoversa=true"
+            href="?addRobot=true"
             className={dashboardStyles.button_create}
             scroll={false}
           >
-            Connect Roversa
+            Connect Robot
           </Link>
         </div>
-        {addRoversa && <RoversaPopup setLoading={setLoading} />}
-        <h5>No Roversas yet!</h5>
+        {addRobot && <RobotPopup setLoading={setLoading} />}
+        <h5>No Robots yet!</h5>
       </div>
     );
   }
@@ -124,35 +124,32 @@ export default function RoversaSection() {
   return (
     <div className={dashboardStyles.section}>
       <div className={dashboardStyles.section_header}>
-        Roversas
+        Robots
         <Link
-          href="?addRoversa=true"
+          href="?addRobot=true"
           scroll={false}
           className={dashboardStyles.button_create}
         >
-          Connect Roversa
+          Connect Robot
         </Link>
       </div>
       <div>
-        {addRoversa && <RoversaPopup setLoading={setLoading} />}
+        {addRobot && <RobotPopup setLoading={setLoading} />}
         {data.map((d, i) => (
           <span
             key={i}
-            className={pageStyles.roversa_card}
-            style={{ backgroundColor: `var(--${roversaCardColor[i]})` }}
+            className={pageStyles.robot_card}
+            style={{ backgroundColor: `var(--${robotCardColor[i]})` }}
           >
             {d}
             <div> Battery: {batteryData[i]} </div>
             <button
               onClick={() => handleClick(d, i)}
-              className={pageStyles.roversa_card_button}
+              className={pageStyles.robot_card_button}
             >
               View Output Log
             </button>
-            <button
-              onClick={() => {}}
-              className={pageStyles.roversa_card_button}
-            >
+            <button onClick={() => {}} className={pageStyles.robot_card_button}>
               Mark as Done
             </button>
           </span>

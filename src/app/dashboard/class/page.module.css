@@ -1,4 +1,4 @@
-.roversa_card {
+.robot_card {
   display: inline-block;
   border-radius: var(--border-radius);
   text-align: center;
@@ -13,7 +13,7 @@
   color: var(--white);
 }
 
-.roversa_card_button {
+.robot_card_button {
   display: block;
   font-size: var(--font-size6);
   color: var(--white);
@@ -32,6 +32,6 @@
 }
 
 /* Links on mouse-over */
-.roversa_card_button:hover:not(.active) {
+.robot_card_button:hover:not(.active) {
 background-color: var(--dark-purple);
 }

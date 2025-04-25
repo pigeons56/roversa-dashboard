@@ -7,24 +7,17 @@ import { useSearchParams } from "next/navigation";
 import StudentsPopup from "./students-popup";
 import Link from "next/link";
 
-export default function Students() {
+export default function Robots() {
   const cookies = useCookies();
   const [data, setData] = useState<TableData[]>([]);
-  const [studentDataArr, setStudentDataArr] = useState<studentData[]>([]);
   const searchParams = useSearchParams();
-  const addStudent = searchParams.get("addStudent");
+  const addStudent = searchParams.get("addRobot");
   const [isLoading, setLoading] = useState(true);
 
   type TableData = {
-    studentData: studentData;
-    enrolledClasses: string[];
-    assignedRobots: string[];
-  };
-
-  type studentData = {
-    lastName: string;
-    firstName: string;
-    ID: number;
+    robotID: number;
+    assignedClasses: string[];
+    assignedStudents: string[];
   };
 
   async function fetchStudentClasses() {
@@ -116,7 +109,7 @@ export default function Students() {
 
   return (
     <div>
-      <div className={dashboardStyles.title}>My Students</div>
+      <div className={dashboardStyles.title}>My Robots</div>
       <Link className={dashboardStyles.button_purple} href="?addStudent=true">
         Add
       </Link>

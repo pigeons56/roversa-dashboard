@@ -2,7 +2,7 @@
 
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
-import RoversaSection from "./roversa-section";
+import RobotSection from "./robot-section";
 import OverviewSection from "./overview-section";
 
 export default function Class() {
@@ -17,7 +17,7 @@ export default function Class() {
         <button className={dashboardStyles.button_purple}>Edit Students</button>
       </div>
       <OverviewSection />
-      <RoversaSection />
+      <RobotSection />
     </div>
   );
 }

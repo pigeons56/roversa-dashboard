@@ -33,7 +33,7 @@ export default function SidebarLayout({
               width={243}
               height={100}
               className={pageStyles.img}
-              alt="Roversa logo"
+              alt="Robot logo"
             />{" "}
           </Link>
         </div>

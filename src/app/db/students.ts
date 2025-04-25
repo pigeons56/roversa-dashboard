@@ -34,12 +34,12 @@ export async function getStudentClasses(studentID: number, username: string) {
   }
 }
 
-// get roversas of 1 student
-export async function getStudentRoversas(studentID: number, username: string) {
+// get robots of 1 student
+export async function getStudentRobots(studentID: number, username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `select roversaName, className from student_roversas where studentID=${studentID} AND username="${username}"`
+      `select robotName, className from student_robots where studentID=${studentID} AND username="${username}"`
     );
     return rows;
   } catch (error) {
