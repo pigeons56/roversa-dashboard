@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./page.module.css";
+import pageStyles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 
@@ -48,34 +49,34 @@ export default function Roversa() {
 
   if (isLoading) {
     return (
-      <div className={styles.content}>
-        <div className={styles.title}>Roversa {roversaName}</div>
-        <div className={styles.section}>Loading...</div>
+      <div>
+        <div className={dashboardStyles.title}>Roversa {roversaName}</div>
+        <div className={dashboardStyles.section}>Loading...</div>
       </div>
     );
   }
 
   if (data.length === 0) {
     return (
-      <div className={styles.content}>
-        <div className={styles.title}>
+      <div>
+        <div className={dashboardStyles.title}>
           Roversa {roversaName} (ID: {roversaID})
         </div>
-        <div className={styles.section}>No data yet!</div>
+        <div className={dashboardStyles.section}>No data yet!</div>
       </div>
     );
   }
 
   return (
-    <div className={styles.content}>
-      <div className={styles.title}>
+    <div>
+      <div className={dashboardStyles.title}>
         Roversa {roversaName} (ID: {roversaID})
       </div>
       <div>
-        <button className={styles.button_normal}>Refresh</button>
+        <button className={dashboardStyles.button_purple}>Refresh</button>
       </div>
-      <div className={styles.section}>
-        <div className={styles.section_header}>Output</div>
+      <div className={dashboardStyles.section}>
+        <div className={dashboardStyles.section_header}>Output</div>
         <table>
           <tbody>
             <tr>
@@ -87,16 +88,16 @@ export default function Roversa() {
             {data.map((d, i) => (
               <tr key={i}>
                 <td>
-                  <div className={styles.scrollable}>{d.time}</div>
+                  <div className={dashboardStyles.scrollable}>{d.time}</div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.button}</div>
+                  <div className={dashboardStyles.scrollable}>{d.button}</div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.program}</div>
+                  <div className={dashboardStyles.scrollable}>{d.program}</div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>
+                  <div className={dashboardStyles.scrollable}>
                     {d.battery < 3.4
                       ? 0
                       : d.battery > 3.65
