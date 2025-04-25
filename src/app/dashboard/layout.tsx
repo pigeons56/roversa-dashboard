@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
 import { useEffect } from "react";
 import Classes from "./classes";
+import Link from "next/link";
 
 export default function SidebarLayout({
   children,
@@ -26,13 +27,15 @@ export default function SidebarLayout({
     <div className={pageStyles.page}>
       <div className={pageStyles.sidebar}>
         <div>
-          <Image
-            src="/images/roversalogowithwords-transparent.png"
-            width={243}
-            height={100}
-            className={pageStyles.img}
-            alt="Roversa logo"
-          />
+          <Link href="/dashboard/welcome">
+            <Image
+              src="/images/roversalogowithwords-transparent.png"
+              width={243}
+              height={100}
+              className={pageStyles.img}
+              alt="Roversa logo"
+            />{" "}
+          </Link>
         </div>
         <div>
           <button
