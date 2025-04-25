@@ -15,12 +15,16 @@ export default function StudentsPopup(props: any) {
     const studentID = (
       formInput.get("studentID") as FormDataEntryValue
     ).toString();
-    const response = await fetch("/api/dashboard/students/add", {
+    const response = await fetch("/api/dashboard/student/add", {
       method: "POST",
       body: JSON.stringify({ firstName, lastName, studentID }),
     });
     if (response.ok) {
-      props.setLoading(true);
+      props.addStudentToTable({
+        ID: parseInt(studentID),
+        firstName: firstName,
+        lastName: lastName,
+      });
       router.back();
     } else {
       // Handle errors

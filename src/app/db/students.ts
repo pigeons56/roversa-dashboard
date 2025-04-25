@@ -3,11 +3,11 @@ import { connect } from "./mariadb_setup";
 const pool = await connect();
 
 // get all students
-export async function getStudentIDs(username: string) {
+export async function getStudentData(username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT studentID FROM students WHERE username="${username}"`
+      `SELECT studentID, firstName, lastName FROM students WHERE username="${username}"`
     );
     return rows;
   } catch (error) {
