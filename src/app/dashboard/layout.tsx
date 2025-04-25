@@ -1,7 +1,7 @@
 "use client";
 
 import pageStyles from "./page.module.css";
-import dashboardStyles from "./dashboard.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";

@@ -56,7 +56,7 @@ export default function Classes() {
         <Link
           href="?createClass=true"
           scroll={false}
-          className={pageStyles.create_class}
+          className={dashboardStyles.button_create}
         >
           Create New Class
         </Link>
@@ -79,7 +79,7 @@ export default function Classes() {
       <Link
         href="?createClass=true"
         scroll={false}
-        className={pageStyles.create_class}
+        className={dashboardStyles.button_create}
       >
         Create New Class
       </Link>

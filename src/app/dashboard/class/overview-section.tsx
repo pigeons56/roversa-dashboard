@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import BatteryChart from "./battery-chart";
@@ -51,8 +51,8 @@ export default function OverviewSection() {
   });
 
   return (
-    <div className={styles.section}>
-      <div className={styles.section_header}>Class Overview</div>
+    <div className={dashboardStyles.section}>
+      <div className={dashboardStyles.section_header}>Class Overview</div>
       <BatteryChart data={data} />
     </div>
   );

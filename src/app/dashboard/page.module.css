@@ -59,23 +59,3 @@ div.content {
 .label_yellow {
   color: var(--yellow);
 }
-
-.create_class {
-  display: inline-block;
-  font-size: var(--font-size5);
-  color: var(--white);
-  background-color: var(--green);
-  margin-bottom: .5em;
-  border-radius: var(--border-radius);
-  border-style: none;
-  text-align: center;
-  padding-top: .2em;
-  padding-bottom: .2em;
-  width: 180px;
-  text-decoration: none;
-}
-
-.create_class:hover:not(.active) {
-  background-color: var(--yellow);
-  color: var(--white);
-}

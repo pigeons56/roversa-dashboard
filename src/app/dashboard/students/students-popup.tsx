@@ -29,7 +29,7 @@ export default function StudentsPopup(props: any) {
   }
 
   return (
-    <div className={dashboardStyles.popup_box}>
+    <div className={dashboardStyles.popup_box_white}>
       <div>Add Student</div>
       <form action={handleResponse}>
         <div>

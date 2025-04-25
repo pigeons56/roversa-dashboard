@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
@@ -52,7 +52,7 @@ export default function RoversaPopup(props: any) {
   }, []);
 
   return (
-    <div className={styles.popup_box}>
+    <div className={dashboardStyles.popup_box_lipurple}>
       <div>Connect Roversa</div>
       <form action={handleResponse}>
         <div>
@@ -63,7 +63,7 @@ export default function RoversaPopup(props: any) {
             maxLength={16}
             required
             autoComplete="off"
-            className={styles.popup_input_box}
+            className={dashboardStyles.popup_input}
           ></input>
         </div>
         <div>
@@ -71,7 +71,7 @@ export default function RoversaPopup(props: any) {
             name="roversaID"
             required
             defaultValue=""
-            className={styles.popup_input_box}
+            className={dashboardStyles.popup_input}
           >
             <option value="" disabled hidden>
               RoversaID
@@ -86,12 +86,12 @@ export default function RoversaPopup(props: any) {
         <button
           type="button"
           onClick={getUnassignedRoversaList}
-          className={styles.popup_refresh_button}
+          className={dashboardStyles.popup_button_purple}
         >
           Refresh
         </button>
         <div>
-          <button type="submit" className={styles.popup_create_button}>
+          <button type="submit" className={dashboardStyles.popup_button_green}>
             Add
           </button>
           <button
@@ -99,7 +99,7 @@ export default function RoversaPopup(props: any) {
             onClick={() => {
               router.push(window.location.pathname, { scroll: false });
             }}
-            className={styles.popup_close_button}
+            className={dashboardStyles.popup_button_red}
           >
             Close
           </button>

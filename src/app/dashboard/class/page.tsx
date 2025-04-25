@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import RoversaSection from "./roversa-section";
 import OverviewSection from "./overview-section";
@@ -11,10 +11,10 @@ export default function Class() {
 
   return (
     <div>
-      <div className={styles.title}>Class {className}</div>
+      <div className={dashboardStyles.title}>Class {className}</div>
       <div>
-        <button className={styles.button_normal}>Edit Class</button>
-        <button className={styles.button_normal}>Edit Students</button>
+        <button className={dashboardStyles.button_purple}>Edit Class</button>
+        <button className={dashboardStyles.button_purple}>Edit Students</button>
       </div>
       <OverviewSection />
       <RoversaSection />

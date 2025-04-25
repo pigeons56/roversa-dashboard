@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./page.module.css";
+import pageStyles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";
@@ -96,8 +97,8 @@ export default function RoversaSection() {
 
   if (isLoading) {
     return (
-      <div className={styles.section}>
-        <div className={styles.section_header}>Roversas</div>
+      <div className={dashboardStyles.section}>
+        <div className={dashboardStyles.section_header}>Roversas</div>
         <h5>Loading...</h5>
       </div>
     );
@@ -105,12 +106,12 @@ export default function RoversaSection() {
 
   if (data.length === 0) {
     return (
-      <div className={styles.section}>
-        <div className={styles.section_header}>
+      <div className={dashboardStyles.section}>
+        <div className={dashboardStyles.section_header}>
           Roversas
           <Link
             href="?addRoversa=true"
-            className={styles.add_button}
+            className={dashboardStyles.button_create}
             scroll={false}
           >
             Connect Roversa
@@ -123,13 +124,13 @@ export default function RoversaSection() {
   }
 
   return (
-    <div className={styles.section}>
-      <div className={styles.section_header}>
+    <div className={dashboardStyles.section}>
+      <div className={dashboardStyles.section_header}>
         Roversas
         <Link
           href="?addRoversa=true"
           scroll={false}
-          className={styles.add_button}
+          className={dashboardStyles.button_create}
         >
           Connect Roversa
         </Link>
@@ -139,18 +140,21 @@ export default function RoversaSection() {
         {data.map((d, i) => (
           <span
             key={i}
-            className={styles.roversa_card}
+            className={pageStyles.roversa_card}
             style={{ backgroundColor: `var(--${roversaCardColor[i]})` }}
           >
             {d}
             <div> Battery: {batteryData[i]} </div>
             <button
               onClick={() => handleClick(d, i)}
-              className={styles.roversa_card_button}
+              className={pageStyles.roversa_card_button}
             >
               View Output Log
             </button>
-            <button onClick={() => {}} className={styles.roversa_card_button}>
+            <button
+              onClick={() => {}}
+              className={pageStyles.roversa_card_button}
+            >
               Mark as Done
             </button>
           </span>

@@ -11,7 +11,7 @@
   background-color: var(--white);
   font-size: var(--font-size5);
   border-radius: var(--border-radius);
-  height: 100%;
+  height: 300px;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -19,9 +19,19 @@
   overflow-y: auto;
 }
 
+.section_header {
+    display: flex;
+    font-size: var(--font-size2);
+    color: var(--purple);
+    justify-content: left;
+    align-items: center;
+  }
+
 /* Button, default purple */
-.button_purple, .button_white,
-.button_red {
+.button_purple, 
+.button_white,
+.button_red,
+.button_create {
   display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
@@ -50,15 +60,25 @@
     background-color: var(--red);
   }
 
+.button_create {
+    margin-left: .5em;
+    margin-right: .5em;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    background-color: var(--green);
+}
+
 /* Change color on hover */
 .button_purple:hover:not(.active),
 .button_white:hover:not(.active),
-.button_red:hover:not(.active) {
+.button_red:hover:not(.active),
+.button_create:hover:not(.active) {
   background-color: var(--yellow);
   color: var(--white);
 }
 
-.popup_box {
+.popup_box_white,
+.popup_box_lipurple {
 display:block;
 background-color: var(--white);
 border-radius: var(--border-radius);
@@ -72,6 +92,10 @@ align-content: center;
 font-size: var(--font-size5);
 margin-top: 10px;
 margin-bottom: 10px;
+}
+
+.popup_box_lipurple {
+    background-color: var(--light-purple);
 }
 
 .popup_input {
