@@ -1,19 +1,12 @@
 .page {
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  display: block;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 80px;
   gap: 64px;
   font-family: var(--font-varela-round);
   text-align: center;
-}
-
-.header {
-  font-size: var(--font-size1);
-  padding-top: 3em; 
-  padding-bottom: 3em;
+  align-content: center;
 }
 
 .login_box {
@@ -27,6 +20,7 @@
   width: 26em;
   border-radius: var(--border-radius);
   text-align: left;
+  margin: auto;
 }
 
 .form_input_box {
@@ -57,8 +51,16 @@
   text-align: center;
 }
 
+.submit_button:hover:not(.active) {
+  background-color: var(--dark-purple);
+}
+
 .link {
   font-size: var(--font_size3);
   color: var(--purple);
   padding: 1.5em;
+}
+
+.link:hover:not(.active) {
+  color: var(--dark-purple);
 }

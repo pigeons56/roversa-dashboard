@@ -1,13 +1,12 @@
-import styles from "./page.module.css";
+import pageStyles from "./page.module.css";
 import LoginForm from "./login-form";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <div className={styles.header}>
-        Welcome to the Roversa Teacher Dashboard
-      </div>
-      <div className={styles.login_box}>
+    <div className={pageStyles.page}>
+      <h1>Welcome to the Roversa Teacher Dashboard</h1>
+      <h3>Monitoring student progress on Roversa Robots made easy.</h3>
+      <div className={pageStyles.login_box}>
         <h2>Login</h2>
         <LoginForm />
       </div>
