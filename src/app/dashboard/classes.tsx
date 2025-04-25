@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./page.module.css";
+import pageStyles from "./page.module.css";
+import dashboardStyles from "./dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";
@@ -41,21 +42,21 @@ export default function Classes() {
 
   if (isLoading) {
     return (
-      <div className={styles.classes_bar}>
-        <div className={styles.error_label}>Loading...</div>
+      <div className={pageStyles.classes_section}>
+        <div className={pageStyles.label_yellow}>Loading...</div>
       </div>
     );
   }
 
   if (data.length === 0) {
     return (
-      <div className={styles.classes_bar}>
-        <div className={styles.error_label}>No classes yet!</div>
+      <div className={pageStyles.classes_section}>
+        <div className={pageStyles.label_yellow}>No classes yet!</div>
         {createClass && <ClassPopup setLoading={setLoading} />}
         <Link
           href="?createClass=true"
           scroll={false}
-          className={styles.new_circle}
+          className={pageStyles.create_class}
         >
           Create New Class
         </Link>
@@ -64,12 +65,12 @@ export default function Classes() {
   }
 
   return (
-    <div className={styles.classes_bar}>
+    <div className={pageStyles.classes_section}>
       {data.map((d, i) => (
         <button
           onClick={() => handleClick(d)}
           key={i}
-          className={styles.button_white}
+          className={dashboardStyles.button_white}
         >
           {d}
         </button>
@@ -78,7 +79,7 @@ export default function Classes() {
       <Link
         href="?createClass=true"
         scroll={false}
-        className={styles.new_circle}
+        className={pageStyles.create_class}
       >
         Create New Class
       </Link>

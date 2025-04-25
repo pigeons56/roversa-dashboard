@@ -13,8 +13,7 @@ div.content {
   position: relative;
 }
 
- /* The side navigation menu */
- .sidebar {
+.sidebar {
   margin: 0;
   padding: 0;
   width: 200px;
@@ -26,7 +25,7 @@ div.content {
   align-items: center;
 }
 
-.classes_bar {
+.classes_section {
   display: block;
   margin: 0;
   padding: 0;
@@ -42,60 +41,6 @@ div.content {
   overflow-y: auto;
 }
 
-/* Sidebar links */
-.button_purple {
-  display: block;
-  font-size: var(--font-size5);
-  color: var(--white);
-  background-color: var(--purple);
-  padding-top: .7em;
-  padding-bottom: .7em;
-  width: 200px;
-  border-radius: var(--border-radius);
-  border-style: none;
-  text-align: center;
-  margin-bottom: 1em;
-}
-
-/* Active/current link */
-.button_purple.active {
-  background-color: var(--yellow);
-  color: var(--purple);
-}
-
-/* Links on mouse-over */
-.button_purple:hover:not(.active) {
-  background-color: var(--dark-purple);
-  color: var(--white);
-}
-
-/* Sidebar links */
-.button_white {
-  display: block;
-  font-size: var(--font-size5);
-  color: var(--purple);
-  background-color: var(--white);
-  padding-top: .7em;
-  padding-bottom: .7em;
-  width: 200px;
-  margin-bottom: .5em;
-  border-radius: var(--border-radius);
-  border-style: none;
-  text-align: center;
-}
-
-/* Active/current link */
-.button_white.active {
-background-color: var(--yellow);
-color: var(--purple);
-}
-
-/* Links on mouse-over */
-.button_white:hover:not(.active) {
-background-color: var(--dark-purple);
-color: var(--white);
-}
-
 .img {
   display: block;
   margin: auto;
@@ -105,19 +50,17 @@ color: var(--white);
   height: 70%;
 }
 
-.my_classes_label {
+.label_white, .label_yellow {
   font-size: var(--font-size5);
   color: var(--white);
   margin: 1em;
 }
 
-.error_label {
-  font-size: var(--font-size5);
+.label_yellow {
   color: var(--yellow);
-  margin-bottom: 1em;
 }
 
-.new_circle {
+.create_class {
   display: block;
   font-size: var(--font-size5);
   color: var(--white);
@@ -131,70 +74,7 @@ color: var(--white);
   text-decoration: none;
 }
 
-
-/* Links on mouse-over */
-.new_circle:hover:not(.active) {
-background-color: var(--yellow);
-color: var(--white);
-}
-
-.popup_box {
-  display:block;
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  height: 200px;
-  width: 200px;
-  color: var(--purple);
-  z-index: 1000;
-  position:relative;
-  text-align: center;
-  align-content: center;
-  font-size: var(--font-size5);
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.popup_input_box {
-  background-color: var(--white);
-  margin: 10px;
-  max-width:170px;
-  border-radius: var(--border-radius);
-  text-align: center;
-  border-style: solid;
-  font-size: var(--font-size5);
-  color: var(--dark-purple);
-}
-
-.popup_create_button {
-  font-size: var(--font_size4);
-  color: var(--white);
-  background-color: var(--green);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  width: 80px;
-  border-radius: var(--border-radius);
-  border-style: none;
-  text-align: center;
-  margin: 3px;
-}
-
-.popup_create_button:hover:not(.active) {
+.create_class:hover:not(.active) {
   background-color: var(--yellow);
-  }
-
-.popup_close_button {
-  font-size: var(--font_size4);
   color: var(--white);
-  background-color: var(--red);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  width: 80px;
-  margin: 3px;
-  border-radius: var(--border-radius);
-  border-style: none;
-  text-align: center;
 }
-
-.popup_close_button:hover:not(.active) {
-  background-color: var(--yellow);
-  }

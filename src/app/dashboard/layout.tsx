@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./page.module.css";
+import pageStyles from "./page.module.css";
+import dashboardStyles from "./dashboard.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
@@ -22,30 +23,30 @@ export default function SidebarLayout({
     }
   }, [router, username]);
   return (
-    <div className={styles.page}>
-      <div className={styles.sidebar}>
+    <div className={pageStyles.page}>
+      <div className={pageStyles.sidebar}>
         <div>
           <Image
             src="/images/roversalogowithwords-transparent.png"
             width={243}
             height={100}
-            className={styles.img}
+            className={pageStyles.img}
             alt="Roversa logo"
           />
         </div>
         <div>
           <button
             type="button"
-            className={styles.button_purple}
+            className={dashboardStyles.button_purple}
             onClick={() => router.push("/dashboard/students")}
           >
             My Students
           </button>
         </div>
-        <div className={styles.my_classes_label}>My Classes List</div>
+        <div className={pageStyles.label_white}>My Classes List</div>
         <Classes />
       </div>
-      <div className={styles.content}>{children}</div>
+      <div className={pageStyles.content}>{children}</div>
     </div>
   );
 }
