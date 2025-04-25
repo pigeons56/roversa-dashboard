@@ -107,6 +107,7 @@ text-align: center;
 border-style: solid;
 font-size: var(--font-size5);
 color: var(--dark-purple);
+font: var(--font-varela-round);
 }
 
 .popup_button_green, 
