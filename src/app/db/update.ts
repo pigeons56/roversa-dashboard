@@ -98,7 +98,7 @@ export async function getUnassignedRoversaIDs(
     const unassignedRoversaIDs = await conn.query(
       `SELECT DISTINCT roversaID from roversa_output WHERE roversaID \
       NOT IN ( \
-      SELECT roversaID FROM roversas \
+      SELECT roversaID FROM roversas_classes \
       WHERE className = "${currentClass}" AND username = "${username}")`
     );
     return unassignedRoversaIDs;
@@ -131,7 +131,7 @@ export async function getBattery(className: string) {
   try {
     const rows =
       await conn.query(`SELECT roversaID, battery from roversa_output WHERE roversaID IN \
-      (SELECT roversaID FROM roversas WHERE className = '${className}') ORDER BY datetime DESC`);
+      (SELECT roversaID FROM roversas_classes WHERE className = '${className}') ORDER BY datetime DESC`);
     return rows;
   } catch (error) {
     console.log(error);
