@@ -20,7 +20,7 @@ export default function Roversa() {
   };
 
   function fetchRoversaOutput() {
-    fetch("../../api/dashboard/roversas/output", { method: "GET" }).then(() => {
+    fetch("/api/dashboard/roversas/output", { method: "GET" }).then(() => {
       const roversaOutputJSON = JSON.parse(cookies.get("roversaOutput")!);
       const arr: TableData[] = [];
       for (let i = 0; i < roversaOutputJSON.length; i++) {

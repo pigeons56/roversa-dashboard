@@ -17,7 +17,7 @@ export default function Classes() {
   const router = useRouter();
 
   function updateClasses() {
-    fetch("../../api/dashboard/classes", { method: "GET" }).then(() => {
+    fetch("/api/dashboard/classes", { method: "GET" }).then(() => {
       const classesJSON = JSON.parse(cookies.get("classes")!);
       const arr: string[] = [];
 

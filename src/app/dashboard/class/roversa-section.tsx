@@ -21,44 +21,42 @@ export default function RoversaSection() {
   const router = useRouter();
 
   function updateBatteryLevel() {
-    fetch("../../api/dashboard/roversas/battery", { method: "GET" }).then(
-      () => {
-        const roversasJSON = JSON.parse(cookies.get("roversas")!);
-        const batteryJSON = JSON.parse(cookies.get("battery")!);
-        const battery_arr: string[] = [];
-        const color_arr: string[] = [];
+    fetch("/api/dashboard/roversas/battery", { method: "GET" }).then(() => {
+      const roversasJSON = JSON.parse(cookies.get("roversas")!);
+      const batteryJSON = JSON.parse(cookies.get("battery")!);
+      const battery_arr: string[] = [];
+      const color_arr: string[] = [];
 
-        for (let i = 0; i < roversasJSON.length; i++) {
-          battery_arr.push("Data Not Found");
-          color_arr.push("gray");
-          for (let j = 0; j < batteryJSON.length; j++) {
-            if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
-              // Set battery percent
-              const batteryDecimal =
-                (parseFloat(batteryJSON[j].battery) - 3.4) / 0.25;
-              let batteryPercent = batteryDecimal * 100;
-              if (batteryPercent > 100) batteryPercent = 100;
-              if (batteryPercent < 0) batteryPercent = 0;
+      for (let i = 0; i < roversasJSON.length; i++) {
+        battery_arr.push("Data Not Found");
+        color_arr.push("gray");
+        for (let j = 0; j < batteryJSON.length; j++) {
+          if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
+            // Set battery percent
+            const batteryDecimal =
+              (parseFloat(batteryJSON[j].battery) - 3.4) / 0.25;
+            let batteryPercent = batteryDecimal * 100;
+            if (batteryPercent > 100) batteryPercent = 100;
+            if (batteryPercent < 0) batteryPercent = 0;
 
-              // Set color according to battery
-              if (batteryPercent > 70) color_arr[i] = "green";
-              else if (batteryPercent > 40) color_arr[i] = "yellow";
-              else color_arr[i] = "red";
+            // Set color according to battery
+            if (batteryPercent > 70) color_arr[i] = "green";
+            else if (batteryPercent > 40) color_arr[i] = "yellow";
+            else color_arr[i] = "red";
 
-              battery_arr[i] = batteryPercent.toFixed(0) + "%";
-              break;
-            }
+            battery_arr[i] = batteryPercent.toFixed(0) + "%";
+            break;
           }
         }
-
-        setBatteryData(battery_arr);
-        setroversaCardColor(color_arr);
       }
-    );
+
+      setBatteryData(battery_arr);
+      setroversaCardColor(color_arr);
+    });
   }
 
   function updateRoversas() {
-    fetch("../../api/dashboard/roversas", { method: "GET" }).then(() => {
+    fetch("/api/dashboard/roversas", { method: "GET" }).then(() => {
       const roversasJSON = JSON.parse(cookies.get("roversas")!);
       const arr: string[] = [];
 

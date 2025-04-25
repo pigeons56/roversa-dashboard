@@ -32,7 +32,7 @@ export default function RoversaPopup(props: any) {
   }
 
   function getUnassignedRoversaList() {
-    fetch("../../api/esp32", { method: "GET" }).then(() => {
+    fetch("/api/esp32", { method: "GET" }).then(() => {
       const unassignedRoversasJSON = JSON.parse(
         cookies.get("unassignedRoversas")!
       );

@@ -25,7 +25,7 @@ export default function Students() {
   };
 
   function fetchStudentIDs() {
-    fetch("../../api/dashboard/students", { method: "GET" }).then(() => {
+    fetch("/api/dashboard/students", { method: "GET" }).then(() => {
       const studentsJSON = JSON.parse(cookies.get("students")!);
       const arr: string[] = [];
       for (let i = 0; i < studentsJSON.length; i++) {
@@ -40,7 +40,7 @@ export default function Students() {
   async function setTable() {
     const arr: TableData[] = [];
     for (let i = 0; i < studentIDs.length; i++) {
-      const response = await fetch("../../api/dashboard/students", {
+      const response = await fetch("/api/dashboard/students", {
         method: "POST",
         body: JSON.stringify({ studentID: studentIDs[i] }),
       });
