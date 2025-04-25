@@ -16,18 +16,18 @@ export default function Classes() {
   const createClass = searchParams.get("createClass");
   const router = useRouter();
 
-  function updateClasses() {
-    fetch("/api/dashboard/classes", { method: "GET" }).then(() => {
-      const classesJSON = JSON.parse(cookies.get("classes")!);
-      const arr: string[] = [];
+  async function updateClasses() {
+    const data = await fetch("/api/dashboard/classes", { method: "GET" });
+    const dataJSON = await data.json();
+    const classes = JSON.parse(dataJSON.classes);
+    const arr: string[] = [];
 
-      for (let i = 0; i < classesJSON.length; i++) {
-        arr.push(classesJSON[i].className);
-      }
+    for (let i = 0; i < classes.length; i++) {
+      arr.push(classes[i].className);
+    }
 
-      setData(arr);
-      setLoading(false);
-    });
+    setData(arr);
+    setLoading(false);
   }
 
   function handleClick(d: string) {

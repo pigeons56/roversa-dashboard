@@ -7,11 +7,7 @@ export async function GET() {
   const username = cookieStore.get("username")?.value;
   const classes = await getClasses(username!);
   const json_str = JSON.stringify(classes);
-  cookieStore.set("classes", json_str);
-  return NextResponse.json(
-    { error: "Successfully retrieved classes." },
-    { status: 200 }
-  );
+  return NextResponse.json({ classes: json_str }, { status: 200 });
 }
 
 export async function POST(request: Request) {
