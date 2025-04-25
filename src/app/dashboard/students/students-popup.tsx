@@ -15,7 +15,7 @@ export default function StudentsPopup(props: any) {
     const studentID = (
       formInput.get("studentID") as FormDataEntryValue
     ).toString();
-    const response = await fetch("/api/dashboard/student/add", {
+    const response = await fetch("/api/dashboard/student/data", {
       method: "POST",
       body: JSON.stringify({ firstName, lastName, studentID }),
     });

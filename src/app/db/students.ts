@@ -65,7 +65,7 @@ export async function getStudentName(studentID: number, username: string) {
   }
 }
 
-export async function addStudent(
+export async function addStudentData(
   firstName: string,
   lastName: string,
   studentID: number,
