@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -101,34 +101,34 @@ export default function Students() {
 
   if (isLoading || isWaitingForStudentData) {
     return (
-      <div className={styles.content}>
-        <div className={styles.title}>My Students</div>
-        <div className={styles.section}>Loading...</div>
+      <div>
+        <div className={dashboardStyles.title}>My Students</div>
+        <div className={dashboardStyles.section}>Loading...</div>
       </div>
     );
   } else if (data.length === 0) {
     return (
-      <div className={styles.content}>
-        <div className={styles.title}>My Students</div>
-        <Link className={styles.button_normal} href="?addStudent=true">
+      <div>
+        <div className={dashboardStyles.title}>My Students</div>
+        <Link className={dashboardStyles.button_purple} href="?addStudent=true">
           Add
         </Link>
         {addStudent && <StudentsPopup setLoading={setLoading} />}
-        <div className={styles.section}>No students yet!</div>
+        <div className={dashboardStyles.section}>No students yet!</div>
       </div>
     );
   }
 
   return (
-    <div className={styles.content}>
-      <div className={styles.title}>My Students</div>
-      <Link className={styles.button_normal} href="?addStudent=true">
+    <div>
+      <div className={dashboardStyles.title}>My Students</div>
+      <Link className={dashboardStyles.button_purple} href="?addStudent=true">
         Add
       </Link>
-      <button className={styles.button_normal}>Edit</button>
-      <button className={styles.button_remove}>Remove</button>
+      <button className={dashboardStyles.button_purple}>Edit</button>
+      <button className={dashboardStyles.button_red}>Remove</button>
       {addStudent && <StudentsPopup setLoading={setLoading} />}
-      <div className={styles.section}>
+      <div className={dashboardStyles.section}>
         <table>
           <tbody>
             <tr>
@@ -141,19 +141,27 @@ export default function Students() {
             {data.map((d, i) => (
               <tr key={i}>
                 <td>
-                  <div className={styles.scrollable}>{d.firstName}</div>
+                  <div className={dashboardStyles.scrollable}>
+                    {d.firstName}
+                  </div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.lastName}</div>
+                  <div className={dashboardStyles.scrollable}>{d.lastName}</div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.studentID}</div>
+                  <div className={dashboardStyles.scrollable}>
+                    {d.studentID}
+                  </div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.enrolledClasses}</div>
+                  <div className={dashboardStyles.scrollable}>
+                    {d.enrolledClasses}
+                  </div>
                 </td>
                 <td>
-                  <div className={styles.scrollable}>{d.assignedRoversas}</div>
+                  <div className={dashboardStyles.scrollable}>
+                    {d.assignedRoversas}
+                  </div>
                 </td>
               </tr>
             ))}

@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useRouter } from "next/navigation";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,7 +29,7 @@ export default function StudentsPopup(props: any) {
   }
 
   return (
-    <div className={styles.popup_box}>
+    <div className={dashboardStyles.popup_box}>
       <div>Add Student</div>
       <form action={handleResponse}>
         <div>
@@ -40,7 +40,7 @@ export default function StudentsPopup(props: any) {
             maxLength={32}
             required
             autoComplete="off"
-            className={styles.popup_input_box}
+            className={dashboardStyles.popup_input}
           ></input>
         </div>
         <div>
@@ -51,7 +51,7 @@ export default function StudentsPopup(props: any) {
             maxLength={32}
             required
             autoComplete="off"
-            className={styles.popup_input_box}
+            className={dashboardStyles.popup_input}
           ></input>
         </div>
         <div>
@@ -61,12 +61,12 @@ export default function StudentsPopup(props: any) {
             placeholder="Student ID"
             required
             autoComplete="off"
-            className={styles.popup_input_box}
+            className={dashboardStyles.popup_input}
           ></input>
         </div>
 
         <div>
-          <button type="submit" className={styles.popup_create_button}>
+          <button type="submit" className={dashboardStyles.popup_button_green}>
             Add
           </button>
           <button
@@ -74,7 +74,7 @@ export default function StudentsPopup(props: any) {
             onClick={() => {
               router.push(window.location.pathname, { scroll: false });
             }}
-            className={styles.popup_close_button}
+            className={dashboardStyles.popup_button_red}
           >
             Close
           </button>

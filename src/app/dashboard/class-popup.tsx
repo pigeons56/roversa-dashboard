@@ -1,5 +1,4 @@
-import pageStyles from "./page.module.css";
-import dashboardStyles from "./dashboard.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useRouter } from "next/navigation";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

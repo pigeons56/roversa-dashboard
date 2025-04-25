@@ -1,7 +1,7 @@
 "use client";
 
 import pageStyles from "./page.module.css";
-import dashboardStyles from "./dashboard.module.css";
+import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
 import Link from "next/link";

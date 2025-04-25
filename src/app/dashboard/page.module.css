@@ -61,7 +61,7 @@ div.content {
 }
 
 .create_class {
-  display: block;
+  display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
   background-color: var(--green);
@@ -71,6 +71,7 @@ div.content {
   text-align: center;
   padding-top: .2em;
   padding-bottom: .2em;
+  width: 180px;
   text-decoration: none;
 }
 

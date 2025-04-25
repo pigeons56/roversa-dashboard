@@ -1,22 +1,42 @@
-/* Button, default purple */
-.button_purple, .button_white {
+.title {
   display: block;
+  font-size: var(--font-size1);
+  text-align: left;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.section {
+  display: block;
+  background-color: var(--white);
+  font-size: var(--font-size5);
+  border-radius: var(--border-radius);
+  height: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-content:baseline;
+  overflow-y: auto;
+}
+
+/* Button, default purple */
+.button_purple, .button_white,
+.button_red {
+  display: inline-block;
   font-size: var(--font-size5);
   color: var(--white);
   background-color: var(--purple);
   padding-top: .7em;
   padding-bottom: .7em;
-  width: 200px;
+  width: 180px;
   border-radius: var(--border-radius);
   border-style: none;
   text-align: center;
+  margin-left: .2em;
+  margin-right: .2em;
+  margin-top: .2em;
   margin-bottom: .5em;
-}
-
-/* Button, change color on hover */
-.button_purple:hover:not(.active) {
-  background-color: var(--dark-purple);
-  color: var(--white);
+  text-decoration: none;
 }
 
 /* White button */
@@ -25,18 +45,25 @@
   background-color: var(--white);
 }
 
-/* White button, change color on hover */
-.button_white:hover:not(.active) {
+/* Red button */
+.button_red {
+    background-color: var(--red);
+  }
+
+/* Change color on hover */
+.button_purple:hover:not(.active),
+.button_white:hover:not(.active),
+.button_red:hover:not(.active) {
   background-color: var(--yellow);
-  color: var(--purple);
+  color: var(--white);
 }
 
 .popup_box {
 display:block;
 background-color: var(--white);
 border-radius: var(--border-radius);
-height: 200px;
-width: 200px;
+height: fit-content;
+width: fit-content;
 color: var(--purple);
 z-index: 1000;
 position:relative;
@@ -58,7 +85,9 @@ font-size: var(--font-size5);
 color: var(--dark-purple);
 }
 
-.popup_button_green, .popup_button_red {
+.popup_button_green, 
+.popup_button_red,
+.popup_button_purple {
 font-size: var(--font_size4);
 color: var(--white);
 background-color: var(--green);
@@ -72,10 +101,23 @@ margin: 3px;
 }
 
 .popup_button_green:hover:not(.active),
-.popup_button_red:hover:not(.active) {
+.popup_button_red:hover:not(.active),
+.popup_button_purple:hover:not(.active) {
 background-color: var(--yellow);
 }
 
 .popup_button_red {
-background-color: var(--red);
+  background-color: var(--red);
 }
+
+.popup_button_purple {
+  background-color: var(--purple);
+}
+
+div.scrollable {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+  }
