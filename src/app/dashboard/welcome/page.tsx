@@ -10,7 +10,7 @@ export default function Welcome() {
   return (
     <div className={styles.content}>
       <div className={styles.title_centered}>
-        Welcome to the Robot Teacher Dashboard, {username}!
+        Welcome to the Roversa Teacher Dashboard, {username}!
       </div>
       <div className={styles.subtitle_centered}>
         Use the navigation bar on the left to get started.

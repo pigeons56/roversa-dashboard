@@ -44,12 +44,10 @@ export default function Students() {
       method: "GET",
     });
     const robots = (await data.json()).studentRobots;
-    console.log(robots);
     let arr: string[] = [];
     for (let i = 0; i < robots.length; i++) {
       arr.push(`${robots[i].robotName} (${robots[i].className})`);
     }
-    console.log(arr);
     return arr;
   }
 
@@ -108,7 +106,7 @@ export default function Students() {
         <Link className={dashboardStyles.button_purple} href="?addStudent=true">
           Add
         </Link>
-        {addStudent && <StudentsPopup setLoading={setLoading} />}
+        {addStudent && <StudentsPopup addStudentToTable={addStudentToTable} />}
         <div className={dashboardStyles.section}>No students yet!</div>
       </div>
     );

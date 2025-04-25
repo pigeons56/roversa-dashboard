@@ -1,4 +1,4 @@
-/* .title {
+.title {
   display: block;
   font-size: var(--font-size1);
   text-align: left;
@@ -54,4 +54,4 @@ div.scrollable {
 
 .button_normal:hover:not(.active) {
   background-color: var(--yellow);
-} */
+}
