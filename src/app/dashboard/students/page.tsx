@@ -24,17 +24,18 @@ export default function Students() {
     assignedRoversas: string;
   };
 
-  function fetchStudentIDs() {
-    fetch("/api/dashboard/students", { method: "GET" }).then(() => {
-      const studentsJSON = JSON.parse(cookies.get("students")!);
-      const arr: string[] = [];
-      for (let i = 0; i < studentsJSON.length; i++) {
-        arr.push(studentsJSON[i].studentID);
-      }
-      setStudentIDs(arr);
-      setLoading(false);
-      setWaitingForStudentData(false);
-    });
+  async function fetchStudentData() {
+    const data = await fetch("/api/dashboard/students", { method: "GET" });
+    const dataJSON = await data.json();
+    const students = JSON.parse(dataJSON.students);
+    const arr: string[] = [];
+
+    for (let i = 0; i < students.length; i++) {
+      arr.push(students[i].studentID);
+    }
+    setStudentIDs(arr);
+    setLoading(false);
+    setWaitingForStudentData(false);
   }
 
   async function setTable() {
