@@ -35,6 +35,8 @@
   padding-bottom: 1em;
   padding-left: 1em;
   padding-right: 10em;
+  margin-bottom: .5em;
+  margin-top: .5em;
   border-radius: var(--border-radius);
   text-align: left;
   border-style:solid;
@@ -53,14 +55,6 @@
   border-radius: var(--border-radius);
   border-style: none;
   text-align: center;
-}
-
-.padding_top {
-  padding-top: 1em;
-}
-
-.padding_bottom {
-  padding-bottom: 1em;
 }
 
 .link {

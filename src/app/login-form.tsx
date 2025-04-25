@@ -41,17 +41,15 @@ export default function LoginForm() {
           className={styles.form_input_box}
         />
       </div>
-      <div className={styles.padding_bottom}>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          maxLength={32}
-          required
-          autoComplete="off"
-          className={styles.form_input_box}
-        />
-      </div>
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        maxLength={32}
+        required
+        autoComplete="off"
+        className={styles.form_input_box}
+      />
       <div>
         <button type="submit" className={styles.submit_button}>
           Sign in
