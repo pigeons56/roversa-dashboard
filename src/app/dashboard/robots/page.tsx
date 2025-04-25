@@ -4,83 +4,101 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import StudentsPopup from "./students-popup";
+import RobotPopup from "./robot-popup";
 import Link from "next/link";
 
 export default function Robots() {
   const cookies = useCookies();
   const [data, setData] = useState<TableData[]>([]);
+  const [robotIDs, setRobotIDs] = useState<number[]>([]);
   const searchParams = useSearchParams();
-  const addStudent = searchParams.get("addRobot");
+  const connectRobot = searchParams.get("connectRobot");
   const [isLoading, setLoading] = useState(true);
 
   type TableData = {
     robotID: number;
+    battery: number;
     assignedClasses: string[];
     assignedStudents: string[];
   };
 
-  async function fetchStudentClasses() {
-    const data = await fetch("/api/dashboard/student/classes", {
+  async function fetchRobotBattery() {
+    const data = await fetch("/api/dashboard/robot/battery", {
       method: "GET",
     });
-    const classes = (await data.json()).studentClasses;
+    const battery = (await data.json()).battery;
+    return battery;
+  }
+
+  async function fetchRobotClasses() {
+    const data = await fetch("/api/dashboard/robot/classes", {
+      method: "GET",
+    });
+    const classes = (await data.json()).robotClasses;
     let arr: string[] = [];
     for (let i = 0; i < classes.length; i++) {
-      arr.push(classes[i].className);
+      arr.push(`${classes[i].className} (${classes[i].displayName})`);
     }
     return arr;
   }
 
-  async function fetchStudentRobots() {
-    const data = await fetch("/api/dashboard/student/robots", {
+  async function fetchRobotStudents(classes: string[]) {
+    const data = await fetch("/api/dashboard/robot/students", {
       method: "GET",
     });
-    const robots = (await data.json()).studentRobots;
-    console.log(robots);
+    const students = (await data.json()).robotStudents;
+    console.log(students);
+    console.log(classes);
     let arr: string[] = [];
-    for (let i = 0; i < robots.length; i++) {
-      arr.push(`${robots[i].robotName} (${robots[i].className})`);
+    let strBuilder: string = "";
+
+    for (let i = 0; i < classes.length; i++) {
+      strBuilder += classes[i] + ": ";
+      for (let j = 0; j < students.length; j++) {
+        if (classes[i].includes(students[j].className)) {
+          strBuilder +=
+            students[j].firstName + " " + students[j].lastName + ", ";
+        }
+      }
+      strBuilder = strBuilder.slice(0, -2);
+      arr.push(strBuilder);
+      strBuilder = "";
     }
-    console.log(arr);
     return arr;
   }
 
-  async function addStudentToTable(studentData: studentData) {
-    cookies.set("studentID", studentData.ID.toString());
-    const classes = await fetchStudentClasses();
-    const robots = await fetchStudentRobots();
+  async function addRobotToTable(ID: number) {
+    cookies.set("robotID", ID.toString());
+    const classes = await fetchRobotClasses();
+    const students = await fetchRobotStudents(classes);
+    const battery = await fetchRobotBattery();
 
     const arr: TableData = {
-      studentData: studentData,
-      enrolledClasses: classes,
-      assignedRobots: robots,
+      robotID: ID,
+      battery: battery,
+      assignedClasses: classes,
+      assignedStudents: students,
     };
 
     setData([...data, arr]);
   }
 
-  async function fetchAllStudentData() {
-    const data = await fetch("/api/dashboard/student/data", { method: "GET" });
+  async function fetchAllRobotIDs() {
+    const data = await fetch("/api/dashboard/robot/id", { method: "GET" });
     const dataJSON = await data.json();
-    const studentData = JSON.parse(dataJSON.studentData);
-    const arr: studentData[] = [];
+    const robotIDs = JSON.parse(dataJSON.robotIDs);
+    const arr: number[] = [];
 
-    for (let i = 0; i < studentData.length; i++) {
-      arr.push({
-        ID: studentData[i].studentID,
-        firstName: studentData[i].firstName,
-        lastName: studentData[i].lastName,
-      });
+    for (let i = 0; i < robotIDs.length; i++) {
+      arr.push(robotIDs[i].robotID);
     }
-
-    setStudentDataArr(arr);
+    setRobotIDs(arr);
   }
 
   useEffect(() => {
-    fetchAllStudentData().then(() => {
-      for (let i = 0; i < studentDataArr.length; i++) {
-        addStudentToTable(studentDataArr[i]);
+    fetchAllRobotIDs().then(() => {
+      for (let i = 0; i < robotIDs.length; i++) {
+        addRobotToTable(robotIDs[i]);
       }
       setLoading(false);
     });
@@ -90,19 +108,22 @@ export default function Robots() {
   if (isLoading) {
     return (
       <div>
-        <div className={dashboardStyles.title}>My Students</div>
+        <div className={dashboardStyles.title}>My Robots</div>
         <div className={dashboardStyles.section}>Loading...</div>
       </div>
     );
   } else if (data.length === 0) {
     return (
       <div>
-        <div className={dashboardStyles.title}>My Students</div>
-        <Link className={dashboardStyles.button_purple} href="?addStudent=true">
+        <div className={dashboardStyles.title}>My Robots</div>
+        <Link
+          className={dashboardStyles.button_purple}
+          href="?connectRobot=true"
+        >
           Add
         </Link>
-        {addStudent && <StudentsPopup setLoading={setLoading} />}
-        <div className={dashboardStyles.section}>No students yet!</div>
+        {connectRobot && <RobotPopup addRobotToTable={addRobotToTable} />}
+        <div className={dashboardStyles.section}>No robots connected yet!</div>
       </div>
     );
   }
@@ -110,53 +131,42 @@ export default function Robots() {
   return (
     <div>
       <div className={dashboardStyles.title}>My Robots</div>
-      <Link className={dashboardStyles.button_purple} href="?addStudent=true">
+      <Link className={dashboardStyles.button_purple} href="?connectRobot=true">
         Add
       </Link>
       <button className={dashboardStyles.button_purple}>Edit</button>
       <button className={dashboardStyles.button_red}>Remove</button>
-      {addStudent && <StudentsPopup addStudentToTable={addStudentToTable} />}
+      {connectRobot && <RobotPopup addRobotToTable={addRobotToTable} />}
       <div className={dashboardStyles.section}>
         <table>
           <tbody>
             <tr>
-              <th style={{ width: "20%" }}>First Name</th>
-              <th style={{ width: "20%" }}>Last Name</th>
-              <th style={{ width: "10%" }}>ID</th>
-              <th style={{ width: "25%" }}>Enrolled Classes</th>
-              <th style={{ width: "25%" }}>Assigned Robots</th>
+              <th style={{ width: "15%" }}>ID</th>
+              <th style={{ width: "10%" }}>Battery</th>
+              <th style={{ width: "40%" }}>Assigned Classes (Display Name)</th>
+              <th style={{ width: "45%" }}>Assigned Students</th>
             </tr>
             {data.map((d, i) => (
               <tr key={i}>
                 <td>
-                  <div className={dashboardStyles.scrollable}>
-                    {d.studentData.firstName}
-                  </div>
+                  <div className={dashboardStyles.scrollable}>{d.robotID}</div>
                 </td>
                 <td>
-                  <div className={dashboardStyles.scrollable}>
-                    {d.studentData.lastName}
-                  </div>
+                  <div className={dashboardStyles.scrollable}>{d.battery}%</div>
                 </td>
                 <td>
-                  <div className={dashboardStyles.scrollable}>
-                    {d.studentData.ID}
-                  </div>
-                </td>
-                <td>
-                  {d.enrolledClasses.map((c, j) => (
+                  {d.assignedClasses.map((c, j) => (
                     <span key={j} className={dashboardStyles.scrollable}>
                       {c}
-                      {j < d.enrolledClasses.length - 1 ? ", " : " "}
+                      {j < d.assignedClasses.length - 1 ? ", " : " "}
                     </span>
                   ))}
                 </td>
                 <td>
-                  {d.assignedRobots.map((r, j) => (
-                    <span key={j} className={dashboardStyles.scrollable}>
+                  {d.assignedStudents.map((r, j) => (
+                    <div key={j} className={dashboardStyles.scrollable}>
                       {r}
-                      {j < d.assignedRobots.length - 1 ? ", " : " "}
-                    </span>
+                    </div>
                   ))}
                 </td>
               </tr>

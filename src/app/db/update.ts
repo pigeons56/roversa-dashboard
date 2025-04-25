@@ -126,13 +126,73 @@ export async function getRobotOutput(robotID: number) {
   }
 }
 
-export async function getBattery(className: string) {
+export async function getBattery(robotID: number) {
   const conn = await pool.getConnection();
   try {
-    const rows =
-      await conn.query(`SELECT robotID, battery from robot_output WHERE robotID IN \
-      (SELECT robotID FROM robots_classes WHERE className = '${className}') ORDER BY datetime DESC`);
+    const rows = await conn.query(
+      `SELECT battery from robot_output WHERE robotID = ${robotID} ORDER BY datetime DESC LIMIT 1`
+    );
     return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getRobotClasses(robotID: number, username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT className, displayName FROM robots_classes WHERE robotID = ${robotID} AND username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getRobotStudents(robotID: number, username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT firstName, lastName, className FROM student_robots JOIN students ON student_robots.studentID = students.studentID WHERE robotID = ${robotID} and student_robots.username="${username}" and students.username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getRobotIDs(username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT robotID FROM robots WHERE username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function addRobotID(robotID: number, username: string) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(
+      `INSERT INTO robots (robotID, username) VALUES ("${robotID}","${username}")`
+    );
+    return 1;
   } catch (error) {
     console.log(error);
     return -1;
