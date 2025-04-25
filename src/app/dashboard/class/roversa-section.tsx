@@ -34,7 +34,7 @@ export default function RoversaSection() {
             if (batteryJSON[j].roversaID == roversasJSON[i].roversaID) {
               // Set battery percent
               const batteryDecimal =
-                (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
+                (parseFloat(batteryJSON[j].battery) - 3.4) / 0.25;
               let batteryPercent = batteryDecimal * 100;
               if (batteryPercent > 100) batteryPercent = 100;
               if (batteryPercent < 0) batteryPercent = 0;

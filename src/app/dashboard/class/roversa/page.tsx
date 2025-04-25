@@ -46,12 +46,6 @@ export default function Roversa() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      fetchRoversaOutput();
-    }, 5000);
-  });
-
   if (isLoading) {
     return (
       <div className={styles.content}>
@@ -76,6 +70,9 @@ export default function Roversa() {
     <div className={styles.content}>
       <div className={styles.title}>
         Roversa {roversaName} (ID: {roversaID})
+      </div>
+      <div>
+        <button className={styles.button_normal}>Refresh</button>
       </div>
       <div className={styles.section}>
         <div className={styles.section_header}>Output</div>
@@ -102,9 +99,9 @@ export default function Roversa() {
                   <div className={styles.scrollable}>
                     {d.battery < 3.4
                       ? 0
-                      : d.battery > 3.6
+                      : d.battery > 3.65
                       ? 100
-                      : (((d.battery - 3.4) / 0.2) * 100).toFixed(0)}
+                      : (((d.battery - 3.4) / 0.25) * 100).toFixed(0)}
                     %
                   </div>
                 </td>
