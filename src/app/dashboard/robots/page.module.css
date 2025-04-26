@@ -1,0 +1,22 @@
+.table_button {
+    display: inline-block;
+    font-size: var(--font-size6);
+    color: var(--white);
+    background-color: var(--purple);
+    padding-top: .7em;
+    padding-bottom: .7em;
+    width: fit-content;
+    border-radius: var(--border-radius);
+    border-style: none;
+    text-align: center;
+    margin-left: .1em;
+    margin-right: .2em;
+    margin-top: .2em;
+    margin-bottom: .2em;
+    text-decoration: none;
+  }
+
+  .table_button:hover:not(.active) {
+    background-color: var(--yellow);
+    color: var(--white);
+  }

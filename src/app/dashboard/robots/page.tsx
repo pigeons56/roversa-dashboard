@@ -1,13 +1,11 @@
 "use client";
 
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
+import pageStyles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  calcBatteryPercent,
-  fetchRobotBattery,
-} from "@/app/dashboard/battery-functions";
+import { fetchRobotBattery } from "@/app/dashboard/battery-functions";
 import RobotPopup from "./robot-popup";
 import Link from "next/link";
 
@@ -47,14 +45,18 @@ export default function Robots() {
 
     for (let i = 0; i < classes.length; i++) {
       strBuilder += classes[i] + ": ";
+      let classHasStudent = false;
       for (let j = 0; j < students.length; j++) {
         if (classes[i].includes(students[j].className)) {
           strBuilder +=
             students[j].firstName + " " + students[j].lastName + ", ";
+          classHasStudent = true;
         }
       }
-      strBuilder = strBuilder.slice(0, -2);
-      arr.push(strBuilder);
+      if (classHasStudent) {
+        strBuilder = strBuilder.slice(0, -2);
+        arr.push(strBuilder);
+      }
       strBuilder = "";
     }
     return arr;
@@ -95,6 +97,8 @@ export default function Robots() {
       await addRobotToTable(robotIDs[i]);
     }
   }
+
+  function viewRobotOutput(robotID: number) {}
 
   useEffect(() => {
     if (isLoading) {
@@ -142,9 +146,10 @@ export default function Robots() {
           <tbody>
             <tr>
               <th style={{ width: "15%" }}>ID</th>
-              <th style={{ width: "10%" }}>Battery</th>
-              <th style={{ width: "40%" }}>Assigned Classes (Display Name)</th>
-              <th style={{ width: "45%" }}>Assigned Students</th>
+              <th style={{ width: "6%" }}>Battery</th>
+              <th style={{ width: "31%" }}>Assigned Classes (Display Name)</th>
+              <th style={{ width: "31%" }}>Assigned Students</th>
+              <th style={{ width: "12%" }}></th>
             </tr>
             {data.map((d, i) => (
               <tr key={i}>
@@ -170,6 +175,14 @@ export default function Robots() {
                       {r}
                     </div>
                   ))}
+                </td>
+                <td>
+                  <button
+                    className={pageStyles.table_button}
+                    onClick={() => viewRobotOutput(d.robotID)}
+                  >
+                    View Output
+                  </button>
                 </td>
               </tr>
             ))}

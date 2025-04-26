@@ -73,4 +73,5 @@ table {
   table-layout:fixed;
   text-overflow: ellipsis; 
   overflow-x: hidden;
+  font-size: var(--font-size6);
 }
