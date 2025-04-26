@@ -6,7 +6,8 @@
   padding-bottom: 0.5em;
 }
 
-.section {
+.section,
+.section_table {
   display: block;
   background-color: var(--white);
   font-size: var(--font-size5);
@@ -17,6 +18,10 @@
   margin-bottom: 20px;
   align-content:baseline;
   overflow-y: auto;
+}
+
+.section_table {
+  height: fit-content;
 }
 
 .section_header {

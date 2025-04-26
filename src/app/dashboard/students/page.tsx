@@ -101,7 +101,7 @@ export default function Students() {
     return (
       <div>
         <div className={dashboardStyles.title}>My Students</div>
-        <div className={dashboardStyles.section}>Loading...</div>
+        <div className={dashboardStyles.section_table}>Loading...</div>
       </div>
     );
   } else if (data.length === 0) {
@@ -112,7 +112,7 @@ export default function Students() {
           Add
         </Link>
         {addStudent && <StudentsPopup addStudentToTable={addStudentToTable} />}
-        <div className={dashboardStyles.section}>No students yet!</div>
+        <div className={dashboardStyles.section_table}>No students yet!</div>
       </div>
     );
   }
@@ -126,7 +126,7 @@ export default function Students() {
       <button className={dashboardStyles.button_purple}>Edit</button>
       <button className={dashboardStyles.button_red}>Remove</button>
       {addStudent && <StudentsPopup addStudentToTable={addStudentToTable} />}
-      <div className={dashboardStyles.section}>
+      <div className={dashboardStyles.section_table}>
         <table>
           <tbody>
             <tr>

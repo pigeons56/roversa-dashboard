@@ -112,7 +112,7 @@ export default function Robots() {
     return (
       <div>
         <div className={dashboardStyles.title}>My Robots</div>
-        <div className={dashboardStyles.section}>Loading...</div>
+        <div className={dashboardStyles.section_table}>Loading...</div>
       </div>
     );
   } else if (data.length === 0) {
@@ -126,7 +126,9 @@ export default function Robots() {
           Add
         </Link>
         {connectRobot && <RobotPopup addRobotToTable={addRobotToTable} />}
-        <div className={dashboardStyles.section}>No robots connected yet!</div>
+        <div className={dashboardStyles.section_table}>
+          No robots connected yet!
+        </div>
       </div>
     );
   }
@@ -140,7 +142,7 @@ export default function Robots() {
       <button className={dashboardStyles.button_purple}>Edit</button>
       <button className={dashboardStyles.button_red}>Remove</button>
       {connectRobot && <RobotPopup addRobotToTable={addRobotToTable} />}
-      <div className={dashboardStyles.section}>
+      <div className={dashboardStyles.section_table}>
         <table>
           <tbody>
             <tr>
