@@ -35,3 +35,30 @@
 .robot_card_button:hover:not(.active) {
 background-color: var(--dark-purple);
 }
+
+.add_robot_button {
+  display: block;
+  font-size: var(--font-size6);
+  color: var(--white);
+  background-color: var(--green);
+  padding-top: .2em;
+  padding-bottom: .2em;
+  width: 150px;
+  margin: 15px;
+  border-radius: var(--border-radius);
+  border-style: none;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+}
+
+/* Links on mouse-over */
+.add_robot_button:hover:not(.active) {
+background-color: var(--yellow);
+}
+
+.inline_text {
+  display: inline;
+  font-size: var(--font-size6);
+}

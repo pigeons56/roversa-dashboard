@@ -9,7 +9,9 @@ import {
   fetchRobotBattery,
   fetchAllLatestRobotBatteryInClass,
 } from "@/app/dashboard/battery-functions";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import AddRobotPopup from "./add-robot-popup";
+import Link from "next/link";
 
 export default function RobotSection() {
   const cookies = useCookies();
@@ -17,6 +19,8 @@ export default function RobotSection() {
   const [isLoading, setLoading] = useState(true);
   const router = useRouter();
   const [isTimeToUpdate, setTimeToUpdate] = useState(true);
+  const searchParams = useSearchParams();
+  const addRobot = searchParams.get("addRobot");
 
   type Robot = {
     ID: number;
@@ -127,14 +131,19 @@ export default function RobotSection() {
   }, [isLoading]);
 
   useEffect(() => {
-    if (isTimeToUpdate) {
+    const wait = 3000;
+    if (isTimeToUpdate && addRobot == null) {
+      updateAllCards().then(() => {
+        setTimeToUpdate(false);
+        setTimeout(() => {
+          setTimeToUpdate(true);
+        }, wait);
+      });
+    } else {
       setTimeToUpdate(false);
-
-      updateAllCards();
-
       setTimeout(() => {
         setTimeToUpdate(true);
-      }, 10000);
+      }, wait);
     }
   }, [isTimeToUpdate]);
 
@@ -150,7 +159,17 @@ export default function RobotSection() {
   if (data.length === 0) {
     return (
       <div className={dashboardStyles.section}>
-        <div className={dashboardStyles.section_header}>Robots</div>
+        <div className={dashboardStyles.section_header}>
+          Robots{" "}
+          <Link
+            className={pageStyles.add_robot_button}
+            scroll={false}
+            href="?addRobot=true"
+          >
+            Add Robot
+          </Link>{" "}
+        </div>
+        {addRobot && <AddRobotPopup addCard={addCard} />}
         <h5>No Robots yet!</h5>
       </div>
     );
@@ -158,7 +177,17 @@ export default function RobotSection() {
 
   return (
     <div className={dashboardStyles.section}>
-      <div className={dashboardStyles.section_header}>Robots</div>
+      <div className={dashboardStyles.section_header}>
+        Robots{" "}
+        <Link
+          className={pageStyles.add_robot_button}
+          scroll={false}
+          href="?addRobot=true"
+        >
+          Add Robot
+        </Link>
+      </div>
+      {addRobot && <AddRobotPopup addCard={addCard} />}
       <div>
         {data.map((d, i) => (
           <span

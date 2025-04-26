@@ -214,6 +214,24 @@ export async function getRobotIDsByClass(className: string, username: string) {
   }
 }
 
+export async function getRobotIDsNotInClass(
+  className: string,
+  username: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT robotID FROM robots WHERE username="${username}" AND robotID NOT IN (SELECT robotID FROM robots_classes WHERE className = "${className}")`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
 export async function getNotConnectedRobotIDs(username: string) {
   const conn = await pool.getConnection();
   try {
@@ -234,7 +252,27 @@ export async function addRobotID(robotID: number, username: string) {
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT INTO robots (robotID, username) VALUES ("${robotID}","${username}")`
+      `INSERT INTO robots (robotID, username) VALUES (${robotID},"${username}")`
+    );
+    return 1;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function addRobotToClass(
+  robotID: number,
+  robotName: string,
+  className: string,
+  username: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    await conn.query(
+      `INSERT INTO robots_classes (robotID, displayName, className, username) VALUES (${robotID},"${robotName}","${className}","${username}")`
     );
     return 1;
   } catch (error) {

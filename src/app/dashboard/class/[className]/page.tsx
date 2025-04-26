@@ -15,9 +15,8 @@ export default function Class() {
       <div>
         <button className={dashboardStyles.button_purple}>Edit Class</button>
         <button className={dashboardStyles.button_purple}>
-          Assign Students
+          Enroll Students
         </button>
-        <button className={dashboardStyles.button_purple}>Assign Robots</button>
       </div>
       <OverviewSection />
       <RobotSection />

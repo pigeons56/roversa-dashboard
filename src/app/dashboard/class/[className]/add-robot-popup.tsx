@@ -1,13 +1,15 @@
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
+import pageStyles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCookies } from "next-client-cookies";
+import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function RobotPopup(props: any) {
-  const cookies = useCookies();
+export default function AddRobotPopup(props: any) {
   const router = useRouter();
-  const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState<number[]>([]);
+  const [isLoading, setLoading] = useState(true);
 
   async function handleResponse(formInput: FormData) {
     const displayName = (
@@ -15,13 +17,13 @@ export default function RobotPopup(props: any) {
     ).toString();
     const robotID = (formInput.get("robotID") as FormDataEntryValue).toString();
 
-    const response = await fetch("/api/dashboard/robots", {
+    const response = await fetch("/api/dashboard/robot/id/by-class", {
       method: "POST",
       body: JSON.stringify({ displayName, robotID }),
     });
 
     if (response.ok) {
-      props.setLoading(true);
+      await props.addCard(parseInt(robotID), displayName);
       router.back();
     } else {
       // Handle errors
@@ -29,27 +31,34 @@ export default function RobotPopup(props: any) {
     }
   }
 
-  function getUnassignedRobotList() {
-    fetch("/api/esp32", { method: "GET" }).then(() => {
-      const unassignedRobotsJSON = JSON.parse(cookies.get("unassignedRobots")!);
-      const arr: string[] = [];
-
-      for (let i = 0; i < unassignedRobotsJSON.length; i++) {
-        arr.push(unassignedRobotsJSON[i].robotID);
-      }
-
-      setData(arr);
+  async function fetchRobotIDsNotInClass() {
+    const data = await fetch("/api/dashboard/robot/id/not-in-class", {
+      method: "GET",
     });
+    const dataJSON = await data.json();
+    const robotIDs = JSON.parse(dataJSON.robotIDs);
+    const arr: number[] = [];
+
+    for (let i = 0; i < robotIDs.length; i++) {
+      arr.push(robotIDs[i].robotID);
+    }
+
+    setData(arr);
   }
 
   useEffect(() => {
-    getUnassignedRobotList();
+    if (isLoading) {
+      fetchRobotIDsNotInClass().then(() => setLoading(false));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isLoading]);
 
+  if (isLoading) {
+    return;
+  }
   return (
     <div className={dashboardStyles.popup_box_lipurple}>
-      <div>Connect Robot</div>
+      <div>Add Robot</div>
       <form action={handleResponse}>
         <div>
           <input
@@ -79,13 +88,6 @@ export default function RobotPopup(props: any) {
             ))}
           </select>
         </div>
-        <button
-          type="button"
-          onClick={getUnassignedRobotList}
-          className={dashboardStyles.popup_button_purple}
-        >
-          Refresh
-        </button>
         <div>
           <button type="submit" className={dashboardStyles.popup_button_green}>
             Add
@@ -100,6 +102,10 @@ export default function RobotPopup(props: any) {
             Close
           </button>
         </div>
+        <span className={pageStyles.inline_text}>Don't see any RobotIDs? </span>
+        <Link href="/dashboard/robots" className={pageStyles.inline_text}>
+          Connect a robot first.
+        </Link>
       </form>
     </div>
   );

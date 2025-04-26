@@ -123,6 +123,7 @@ export default function Robots() {
       <div>
         <div className={dashboardStyles.title}>My Robots</div>
         <Link
+          scroll={false}
           className={dashboardStyles.button_purple}
           href="?connectRobot=true"
         >
@@ -139,7 +140,11 @@ export default function Robots() {
   return (
     <div>
       <div className={dashboardStyles.title}>My Robots</div>
-      <Link className={dashboardStyles.button_purple} href="?connectRobot=true">
+      <Link
+        className={dashboardStyles.button_purple}
+        scroll={false}
+        href="?connectRobot=true"
+      >
         Add
       </Link>
       <button className={dashboardStyles.button_purple}>Edit</button>
