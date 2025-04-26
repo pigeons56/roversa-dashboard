@@ -49,7 +49,6 @@ export default function AddRobotPopup(props: any) {
     if (isLoading) {
       fetchRobotIDsNotInClass().then(() => setLoading(false));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   if (isLoading) {
