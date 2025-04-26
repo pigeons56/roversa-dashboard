@@ -85,6 +85,9 @@ export default function RobotPopup(props: any) {
             Close
           </button>
         </div>
+        <span className={dashboardStyles.inline_text}>
+          When a robot is turned on, its ID will appear.
+        </span>
       </form>
     </div>
   );

@@ -67,9 +67,7 @@ export default function Robot() {
   if (isLoading) {
     return (
       <div>
-        <div className={dashboardStyles.title}>
-          Robot Output (ID: {robotID})
-        </div>
+        <div className={dashboardStyles.title}>Robot (ID: {robotID})</div>
         <div className={dashboardStyles.section_table}>Loading...</div>
       </div>
     );
@@ -77,7 +75,7 @@ export default function Robot() {
 
   return (
     <div>
-      <div className={dashboardStyles.title}>Robot Output (ID: {robotID})</div>
+      <div className={dashboardStyles.title}>Robot (ID: {robotID})</div>
       <div className={dashboardStyles.section_table}>
         <div className={dashboardStyles.section_header}>Output</div>
         <table>

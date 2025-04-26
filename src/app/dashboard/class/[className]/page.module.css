@@ -57,8 +57,3 @@ background-color: var(--dark-purple);
 .add_robot_button:hover:not(.active) {
 background-color: var(--yellow);
 }
-
-.inline_text {
-  display: inline;
-  font-size: var(--font-size6);
-}

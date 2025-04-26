@@ -100,10 +100,10 @@ export default function AddRobotPopup(props: any) {
             Close
           </button>
         </div>
-        <span className={pageStyles.inline_text}>
-          Don&#39t see any RobotIDs?{" "}
+        <span className={dashboardStyles.inline_text}>
+          Don&#39;t see any RobotIDs?{" "}
         </span>
-        <Link href="/dashboard/robots" className={pageStyles.inline_text}>
+        <Link href="/dashboard/robots" className={dashboardStyles.inline_text}>
           Connect a robot first.
         </Link>
       </form>
