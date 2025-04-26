@@ -41,7 +41,6 @@ export default function RobotPopup(props: any) {
 
   useEffect(() => {
     fetchNotConnectedRobotIDs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

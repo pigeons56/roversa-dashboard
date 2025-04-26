@@ -29,7 +29,7 @@ export default function Robots() {
       method: "GET",
     });
     const classes = (await data.json()).robotClasses;
-    let arr: string[] = [];
+    const arr: string[] = [];
     for (let i = 0; i < classes.length; i++) {
       arr.push(`${classes[i].className} (${classes[i].displayName})`);
     }
@@ -41,7 +41,7 @@ export default function Robots() {
       method: "GET",
     });
     const students = (await data.json()).robotStudents;
-    let arr: string[] = [];
+    const arr: string[] = [];
     let strBuilder: string = "";
 
     for (let i = 0; i < classes.length; i++) {

@@ -2,7 +2,6 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import pageStyles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCookies } from "next-client-cookies";
 import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -102,7 +101,9 @@ export default function AddRobotPopup(props: any) {
             Close
           </button>
         </div>
-        <span className={pageStyles.inline_text}>Don't see any RobotIDs? </span>
+        <span className={pageStyles.inline_text}>
+          Don&#39t see any RobotIDs?{" "}
+        </span>
         <Link href="/dashboard/robots" className={pageStyles.inline_text}>
           Connect a robot first.
         </Link>

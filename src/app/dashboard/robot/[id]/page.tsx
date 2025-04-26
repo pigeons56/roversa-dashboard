@@ -1,6 +1,5 @@
 "use client";
 
-import pageStyles from "./page.module.css";
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
@@ -62,6 +61,7 @@ export default function Robot() {
         setTimeToUpdate(true);
       }, 10000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeToUpdate]);
 
   if (isLoading) {

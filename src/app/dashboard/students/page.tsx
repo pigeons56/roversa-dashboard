@@ -10,7 +10,6 @@ import Link from "next/link";
 export default function Students() {
   const cookies = useCookies();
   const [data, setData] = useState<TableData[]>([]);
-  const [studentDataArr, setStudentDataArr] = useState<studentData[]>([]);
   const searchParams = useSearchParams();
   const addStudent = searchParams.get("addStudent");
   const [isLoading, setLoading] = useState(true);
@@ -32,7 +31,7 @@ export default function Students() {
       method: "GET",
     });
     const classes = (await data.json()).studentClasses;
-    let arr: string[] = [];
+    const arr: string[] = [];
     for (let i = 0; i < classes.length; i++) {
       arr.push(classes[i].className);
     }
@@ -44,7 +43,7 @@ export default function Students() {
       method: "GET",
     });
     const robots = (await data.json()).studentRobots;
-    let arr: string[] = [];
+    const arr: string[] = [];
     for (let i = 0; i < robots.length; i++) {
       arr.push(`${robots[i].robotName} (${robots[i].className})`);
     }

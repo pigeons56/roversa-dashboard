@@ -21,7 +21,7 @@ export async function addClass(className: string, username: string) {
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT INTO classes (className, username) VALUES ('${className}', '${username}')`
+      `INSERT INTO classes (className, username) VALUES (${className}', '${username}')`
     );
     return 1;
   } catch (error) {

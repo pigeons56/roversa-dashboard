@@ -22,7 +22,7 @@ export default function OverviewSection() {
       low: number = 0,
       mid: number = 0;
     const batteryArr = await fetchAllLatestRobotBatteryInClass();
-    let seenIDs: number[] = [];
+    const seenIDs: number[] = [];
     for (let i = 0; i < batteryArr.length; i++) {
       const ID = batteryArr[i].robotID;
       if (!seenIDs.includes(ID)) {
@@ -45,12 +45,6 @@ export default function OverviewSection() {
     setData(arr);
   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     updateBatteryData();
-  //   }, 3000);
-  // });
-
   useEffect(() => {
     if (isTimeToUpdate) {
       setTimeToUpdate(false);
@@ -61,6 +55,7 @@ export default function OverviewSection() {
         setTimeToUpdate(true);
       }, 10000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeToUpdate]);
 
   return (

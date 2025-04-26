@@ -31,7 +31,7 @@ export default function RobotSection() {
 
   async function mapRobotBattery() {
     const batteryArr = await fetchAllLatestRobotBatteryInClass();
-    let batteryMap = new Map<number, number>();
+    const batteryMap = new Map<number, number>();
     for (let i = 0; i < batteryArr.length; i++) {
       const key = batteryArr[i].robotID;
       if (!batteryMap.has(key)) {
@@ -44,7 +44,7 @@ export default function RobotSection() {
 
   async function updateAllCards() {
     const batteryMap = await mapRobotBattery();
-    let newData: Robot[] = [];
+    const newData: Robot[] = [];
     for (let i = 0; i < data.length; i++) {
       const battery = batteryMap.get(data[i].ID)!;
       const cardColor = calcCardColor(battery);
@@ -86,7 +86,7 @@ export default function RobotSection() {
       name = await fetchRobotName();
     }
 
-    let arr: Robot = {
+    const arr: Robot = {
       ID: ID,
       name: name,
       battery: battery,
@@ -145,6 +145,7 @@ export default function RobotSection() {
         setTimeToUpdate(true);
       }, wait);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimeToUpdate]);
 
   if (isLoading) {
