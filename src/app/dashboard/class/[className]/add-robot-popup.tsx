@@ -1,5 +1,4 @@
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
-import pageStyles from "./page.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
