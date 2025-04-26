@@ -105,11 +105,45 @@ export async function getRobotOutput(robotID: number) {
   }
 }
 
-export async function getBattery(robotID: number) {
+export async function getBatteryByID(robotID: number) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
       `SELECT battery from robot_output WHERE robotID = ${robotID} ORDER BY datetime DESC LIMIT 1`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getRobotNameByID(
+  robotID: number,
+  className: string,
+  username: string
+) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT displayName from robots_classes WHERE robotID = ${robotID} AND className = "${className}" AND username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getBatteryByClass(className: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      ` SELECT robotID, battery FROM robot_output WHERE robotID IN (SELECT robotID FROM robots_classes WHERE className="${className}") ORDER BY datetime DESC`
     );
     return rows;
   } catch (error) {
@@ -155,6 +189,21 @@ export async function getRobotIDs(username: string) {
   try {
     const rows = await conn.query(
       `SELECT robotID FROM robots WHERE username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getRobotIDsByClass(className: string, username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT robotID FROM robots WHERE username="${username}" AND robotID IN (SELECT robotID FROM robots_classes WHERE className = "${className}")`
     );
     return rows;
   } catch (error) {

@@ -4,6 +4,7 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { calcBatteryPercent } from "@/app/dashboard/helper-functions/calc-battery";
 import RobotPopup from "./robot-popup";
 import Link from "next/link";
 
@@ -22,11 +23,12 @@ export default function Robots() {
   };
 
   async function fetchRobotBattery() {
-    const data = await fetch("/api/dashboard/robot/battery", {
+    const data = await fetch("/api/dashboard/robot/battery/by-id", {
       method: "GET",
     });
     const battery = (await data.json()).battery;
-    return battery;
+    const batteryPercent = calcBatteryPercent(battery);
+    return batteryPercent;
   }
 
   async function fetchRobotClasses() {
@@ -65,7 +67,6 @@ export default function Robots() {
   }
 
   async function addRobotToTable(ID: number) {
-    console.log(ID, "called");
     cookies.set("robotID", ID.toString());
     const classes = await fetchRobotClasses();
     const students = await fetchRobotStudents(classes);
@@ -157,7 +158,9 @@ export default function Robots() {
                   <div className={dashboardStyles.scrollable}>{d.robotID}</div>
                 </td>
                 <td>
-                  <div className={dashboardStyles.scrollable}>{d.battery}%</div>
+                  <div className={dashboardStyles.scrollable}>
+                    {d.battery.toFixed(0)}%
+                  </div>
                 </td>
                 <td>
                   {d.assignedClasses.map((c, j) => (

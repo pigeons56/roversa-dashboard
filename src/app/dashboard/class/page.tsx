@@ -11,12 +11,15 @@ export default function Class() {
 
   return (
     <div>
-      <div className={dashboardStyles.title}>Class {className}</div>
+      <div className={dashboardStyles.title}>Class: {className}</div>
       <div>
         <button className={dashboardStyles.button_purple}>Edit Class</button>
-        <button className={dashboardStyles.button_purple}>Edit Students</button>
+        <button className={dashboardStyles.button_purple}>
+          Assign Students
+        </button>
+        <button className={dashboardStyles.button_purple}>Assign Robots</button>
       </div>
-      <OverviewSection />
+      {/* <OverviewSection /> */}
       <RobotSection />
     </div>
   );
