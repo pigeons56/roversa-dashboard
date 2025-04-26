@@ -114,9 +114,9 @@ export default function RobotSection() {
     }
   }
 
-  function handleClick(robotID: number) {
+  function toRobotOutput(robotID: number) {
     cookies.set("currentRobotID", robotID.toString());
-    router.push("/dashboard/class/robot");
+    router.push("/dashboard/robot/" + robotID);
   }
 
   useEffect(() => {
@@ -169,7 +169,7 @@ export default function RobotSection() {
             {d.name}
             <div> Battery: {d.battery.toFixed(0)}% </div>
             <button
-              onClick={() => handleClick(d.ID)}
+              onClick={() => toRobotOutput(d.ID)}
               className={pageStyles.robot_card_button}
             >
               View Output Log

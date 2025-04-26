@@ -32,7 +32,6 @@ export default function Robot() {
       const button = robotOutput[i].button;
       const program = robotOutput[i].program;
       const battery = robotOutput[i].battery;
-      console.log(battery);
 
       const row: TableData = {
         time: time,
