@@ -62,7 +62,7 @@ export default function Students() {
       assignedRobots: robots,
     };
 
-    setData([...data, arr]);
+    setData((data) => [...data, arr]);
   }
 
   async function fetchAllStudentData() {
@@ -79,16 +79,21 @@ export default function Students() {
       });
     }
 
-    setStudentDataArr(arr);
+    return arr;
+  }
+
+  async function initTable() {
+    const studentData = await fetchAllStudentData();
+    for (let i = 0; i < studentData.length; i++) {
+      await addStudentToTable(studentData[i]);
+      console.log(studentData[i].firstName, i, studentData.length);
+    }
   }
 
   useEffect(() => {
-    fetchAllStudentData().then(() => {
-      for (let i = 0; i < studentDataArr.length; i++) {
-        addStudentToTable(studentDataArr[i]);
-      }
-      setLoading(false);
-    });
+    if (isLoading) {
+      initTable().then(() => setLoading(false));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 

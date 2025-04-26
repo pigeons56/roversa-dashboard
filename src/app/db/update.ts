@@ -89,27 +89,6 @@ export async function addRobotOutput(
   }
 }
 
-export async function getUnassignedRobotIDs(
-  username: string,
-  currentClass: string
-) {
-  const conn = await pool.getConnection();
-  try {
-    const unassignedRobotIDs = await conn.query(
-      `SELECT DISTINCT robotID from robot_output WHERE robotID \
-      NOT IN ( \
-      SELECT robotID FROM robots_classes \
-      WHERE className = "${currentClass}" AND username = "${username}")`
-    );
-    return unassignedRobotIDs;
-  } catch (error) {
-    console.log(error);
-    return -1;
-  } finally {
-    if (conn) conn.end();
-  }
-}
-
 // get output of 1 robot
 export async function getRobotOutput(robotID: number) {
   const conn = await pool.getConnection();
@@ -176,6 +155,22 @@ export async function getRobotIDs(username: string) {
   try {
     const rows = await conn.query(
       `SELECT robotID FROM robots WHERE username="${username}"`
+    );
+    return rows;
+  } catch (error) {
+    console.log(error);
+    return -1;
+  } finally {
+    if (conn) conn.end();
+  }
+}
+
+export async function getNotConnectedRobotIDs(username: string) {
+  const conn = await pool.getConnection();
+  try {
+    const rows = await conn.query(
+      `SELECT DISTINCT robotID from robot_output WHERE robotID \
+      NOT IN ( SELECT robotID FROM robots WHERE username = "${username}")`
     );
     return rows;
   } catch (error) {

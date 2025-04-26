@@ -11,7 +11,6 @@ export async function GET() {
   let batteryPercent = batteryDecimal * 100;
   if (batteryPercent > 100) batteryPercent = 100;
   if (batteryPercent < 0) batteryPercent = 0;
-  console.log(batteryPercent);
   return NextResponse.json(
     { battery: batteryPercent.toString() },
     { status: 200 }

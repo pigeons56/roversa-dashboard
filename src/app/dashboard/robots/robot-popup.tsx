@@ -1,18 +1,16 @@
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCookies } from "next-client-cookies";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function RobotPopup(props: any) {
-  const cookies = useCookies();
   const router = useRouter();
-  const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState<number[]>([]);
 
   async function handleResponse(formInput: FormData) {
     const robotID = (formInput.get("robotID") as FormDataEntryValue).toString();
 
-    const response = await fetch("/api/dashboard/robot/id", {
+    const response = await fetch("/api/dashboard/robot/id/all", {
       method: "POST",
       body: JSON.stringify({ robotID }),
     });
@@ -26,21 +24,23 @@ export default function RobotPopup(props: any) {
     }
   }
 
-  function getUnassignedRobotList() {
-    fetch("/api/esp32", { method: "GET" }).then(() => {
-      const unassignedRobotsJSON = JSON.parse(cookies.get("unassignedRobots")!);
-      const arr: string[] = [];
-
-      for (let i = 0; i < unassignedRobotsJSON.length; i++) {
-        arr.push(unassignedRobotsJSON[i].robotID);
-      }
-
-      setData(arr);
+  async function fetchNotConnectedRobotIDs() {
+    const data = await fetch("/api/dashboard/robot/id/not-connected", {
+      method: "GET",
     });
+    const dataJSON = await data.json();
+    const robotIDs = JSON.parse(dataJSON.robotIDs);
+    const arr: number[] = [];
+
+    for (let i = 0; i < robotIDs.length; i++) {
+      arr.push(robotIDs[i].robotID);
+    }
+
+    setData(arr);
   }
 
   useEffect(() => {
-    getUnassignedRobotList();
+    fetchNotConnectedRobotIDs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -67,7 +67,7 @@ export default function RobotPopup(props: any) {
         </div>
         <button
           type="button"
-          onClick={getUnassignedRobotList}
+          onClick={fetchNotConnectedRobotIDs}
           className={dashboardStyles.popup_button_purple}
         >
           Refresh

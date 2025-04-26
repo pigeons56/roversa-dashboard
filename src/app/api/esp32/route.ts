@@ -1,22 +1,5 @@
 import { NextResponse } from "next/server";
-import { addRobotOutput, getUnassignedRobotIDs } from "@/app/db/update";
-import { cookies } from "next/headers";
-
-export async function GET() {
-  const cookieStore = await cookies();
-  const username = cookieStore.get("username")?.value;
-  const currentClass = cookieStore.get("currentClass")?.value;
-  const unassignedRobots = await getUnassignedRobotIDs(
-    username!,
-    currentClass!
-  );
-  const json_str = JSON.stringify(unassignedRobots);
-  cookieStore.set("unassignedRobots", json_str);
-  return NextResponse.json(
-    { error: "Successfully retrieved Robot IDs unassigned to this class." },
-    { status: 200 }
-  );
-}
+import { addRobotOutput } from "@/app/db/update";
 
 export async function POST(request: Request) {
   console.log("POST from esp32 received.");

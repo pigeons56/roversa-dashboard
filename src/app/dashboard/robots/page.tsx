@@ -10,7 +10,6 @@ import Link from "next/link";
 export default function Robots() {
   const cookies = useCookies();
   const [data, setData] = useState<TableData[]>([]);
-  const [robotIDs, setRobotIDs] = useState<number[]>([]);
   const searchParams = useSearchParams();
   const connectRobot = searchParams.get("connectRobot");
   const [isLoading, setLoading] = useState(true);
@@ -47,8 +46,6 @@ export default function Robots() {
       method: "GET",
     });
     const students = (await data.json()).robotStudents;
-    console.log(students);
-    console.log(classes);
     let arr: string[] = [];
     let strBuilder: string = "";
 
@@ -68,6 +65,7 @@ export default function Robots() {
   }
 
   async function addRobotToTable(ID: number) {
+    console.log(ID, "called");
     cookies.set("robotID", ID.toString());
     const classes = await fetchRobotClasses();
     const students = await fetchRobotStudents(classes);
@@ -80,11 +78,11 @@ export default function Robots() {
       assignedStudents: students,
     };
 
-    setData([...data, arr]);
+    setData((data) => [...data, arr]);
   }
 
   async function fetchAllRobotIDs() {
-    const data = await fetch("/api/dashboard/robot/id", { method: "GET" });
+    const data = await fetch("/api/dashboard/robot/id/all", { method: "GET" });
     const dataJSON = await data.json();
     const robotIDs = JSON.parse(dataJSON.robotIDs);
     const arr: number[] = [];
@@ -92,16 +90,21 @@ export default function Robots() {
     for (let i = 0; i < robotIDs.length; i++) {
       arr.push(robotIDs[i].robotID);
     }
-    setRobotIDs(arr);
+
+    return arr;
+  }
+
+  async function initTable() {
+    const robotIDs = await fetchAllRobotIDs();
+    for (let i = 0; i < robotIDs.length; i++) {
+      await addRobotToTable(robotIDs[i]);
+    }
   }
 
   useEffect(() => {
-    fetchAllRobotIDs().then(() => {
-      for (let i = 0; i < robotIDs.length; i++) {
-        addRobotToTable(robotIDs[i]);
-      }
-      setLoading(false);
-    });
+    if (isLoading) {
+      initTable().then(() => setLoading(false));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
