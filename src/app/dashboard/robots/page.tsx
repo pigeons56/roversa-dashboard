@@ -4,7 +4,7 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import pageStyles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { fetchRobotBattery } from "@/app/dashboard/battery-functions";
 import RobotPopup from "./robot-popup";
 import Link from "next/link";
@@ -15,6 +15,7 @@ export default function Robots() {
   const searchParams = useSearchParams();
   const connectRobot = searchParams.get("connectRobot");
   const [isLoading, setLoading] = useState(true);
+  const router = useRouter();
 
   type TableData = {
     robotID: number;
@@ -98,7 +99,10 @@ export default function Robots() {
     }
   }
 
-  function viewRobotOutput(robotID: number) {}
+  function toRobotOutput(robotID: number) {
+    cookies.set("currentRobotID", robotID.toString());
+    router.push("/dashboard/robot/" + robotID);
+  }
 
   useEffect(() => {
     if (isLoading) {
@@ -179,7 +183,7 @@ export default function Robots() {
                 <td>
                   <button
                     className={pageStyles.table_button}
-                    onClick={() => viewRobotOutput(d.robotID)}
+                    onClick={() => toRobotOutput(d.robotID)}
                   >
                     View Output
                   </button>

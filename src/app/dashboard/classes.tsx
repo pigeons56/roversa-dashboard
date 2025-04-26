@@ -30,7 +30,7 @@ export default function Classes() {
     setLoading(false);
   }
 
-  function handleClick(d: string) {
+  function toClickedClass(d: string) {
     cookies.set("currentClass", d);
     router.push("/dashboard/class/" + d);
   }
@@ -70,7 +70,7 @@ export default function Classes() {
       <div className={pageStyles.label_white}>My Classes List</div>
       {data.map((d, i) => (
         <button
-          onClick={() => handleClick(d)}
+          onClick={() => toClickedClass(d)}
           key={i}
           className={dashboardStyles.button_white}
         >

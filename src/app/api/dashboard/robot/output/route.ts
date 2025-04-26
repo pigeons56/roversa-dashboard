@@ -7,10 +7,5 @@ export async function GET() {
   // eslint-disable-next-line  @typescript-eslint/no-non-null-asserted-optional-chain
   const robotID = parseInt(cookieStore.get("currentRobotID")?.value!);
   const robotOutput = await getRobotOutput(robotID);
-  const json_str = JSON.stringify(robotOutput);
-  cookieStore.set("robotOutput", json_str);
-  return NextResponse.json(
-    { error: "Successfully retrieved robot output." },
-    { status: 200 }
-  );
+  return NextResponse.json({ robotOutput: robotOutput }, { status: 200 });
 }
