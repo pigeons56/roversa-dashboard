@@ -12,7 +12,7 @@ export async function GET() {
   if (batteryPercent > 100) batteryPercent = 100;
   if (batteryPercent < 0) batteryPercent = 0;
   return NextResponse.json(
-    { battery: batteryPercent.toString() },
+    { battery: batteryPercent.toFixed(0) },
     { status: 200 }
   );
 }
