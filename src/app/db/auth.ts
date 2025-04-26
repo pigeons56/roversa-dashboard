@@ -6,7 +6,7 @@ export async function login(username: string, password: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
+      `SELECT * FROM users WHERE username="${username}" AND password="${password}"`
     );
 
     if (rows[0].username == username && rows[0].password == password) {
@@ -24,9 +24,9 @@ export async function login(username: string, password: string) {
 export async function signup(username: string, password: string) {
   const conn = await pool.getConnection();
   try {
-    await conn.query(`SELECT * FROM users WHERE username='${username}'`);
+    await conn.query(`SELECT * FROM users WHERE username="${username}"`);
     await conn.query(
-      `INSERT INTO users (username, password) VALUES ('${username}','${password}')`
+      `INSERT INTO users (username, password) VALUES ("${username}","${password}")`
     );
     return 1;
   } catch (error) {

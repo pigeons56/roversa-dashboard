@@ -6,7 +6,7 @@ export async function getClasses(username: string) {
   const conn = await pool.getConnection();
   try {
     const rows = await conn.query(
-      `SELECT className FROM classes WHERE username='${username}'`
+      `SELECT className FROM classes WHERE username="${username}"`
     );
     return rows;
   } catch (error) {
@@ -21,7 +21,7 @@ export async function addClass(className: string, username: string) {
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT INTO classes (className, username) VALUES (${className}', '${username}')`
+      `INSERT INTO classes (className, username) VALUES ("${className}", "${username}")`
     );
     return 1;
   } catch (error) {
@@ -37,8 +37,8 @@ export async function getRobots(className: string, username: string) {
   try {
     const rows = await conn.query(
       `SELECT robots.displayName, robots.robotID FROM robots \
-      WHERE className='${className}' \
-      AND username='${username}'`
+      WHERE className="${className}" \
+      AND username="${username}"`
     );
     return rows;
   } catch (error) {
@@ -58,7 +58,7 @@ export async function addRobot(
   const conn = await pool.getConnection();
   try {
     await conn.query(
-      `INSERT INTO robots (displayName, className, robotID, username) VALUES ('${displayName}','${className}', '${robotID}', '${username}')`
+      `INSERT INTO robots (displayName, className, robotID, username) VALUES ("${displayName}","${className}", "${robotID}", "${username}")`
     );
     return 1;
   } catch (error) {
