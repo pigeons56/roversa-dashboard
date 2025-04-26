@@ -32,7 +32,7 @@ export default function Classes() {
 
   function handleClick(d: string) {
     cookies.set("currentClass", d);
-    router.push("/dashboard/class");
+    router.push("/dashboard/class/" + d);
   }
 
   useEffect(() => {
