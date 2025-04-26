@@ -19,7 +19,7 @@ export default function Class() {
         </button>
         <button className={dashboardStyles.button_purple}>Assign Robots</button>
       </div>
-      {/* <OverviewSection /> */}
+      <OverviewSection />
       <RobotSection />
     </div>
   );

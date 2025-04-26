@@ -2,37 +2,38 @@
 
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
-import { useCookies } from "next-client-cookies";
 import BatteryChart from "./battery-chart";
+import {
+  calcBatteryPercent,
+  fetchAllLatestRobotBatteryInClass,
+} from "../battery-functions";
 
 export default function OverviewSection() {
-  const cookies = useCookies();
   const [data, setData] = useState<ChartData[]>([]);
+  const [isTimeToUpdate, setTimeToUpdate] = useState(true);
 
   type ChartData = {
     name: string;
     value: number;
   };
 
-  function updateBatteryData() {
-    const robotsJSON = JSON.parse(cookies.get("robots")!);
-    const batteryJSON = JSON.parse(cookies.get("battery")!);
-    let high = 0;
-    let mid = 0;
-    let low = 0;
-    for (let i = 0; i < robotsJSON.length; i++) {
-      for (let j = 0; j < batteryJSON.length; j++) {
-        if (batteryJSON[j].robotID == robotsJSON[i].robotID) {
-          const batteryDecimal =
-            (parseFloat(batteryJSON[j].battery) - 3.4) / 0.2;
-          let batteryPercent = batteryDecimal * 100;
-          if (batteryPercent > 100) batteryPercent = 100;
-          if (batteryPercent < 0) batteryPercent = 0;
-          // Set color according to battery
-          if (batteryPercent > 70) high++;
-          else if (batteryPercent > 40) mid++;
-          else low++;
-          break;
+  async function getUpdatedBattery() {
+    let high: number = 0,
+      low: number = 0,
+      mid: number = 0;
+    const batteryArr = await fetchAllLatestRobotBatteryInClass();
+    let seenIDs: number[] = [];
+    for (let i = 0; i < batteryArr.length; i++) {
+      const ID = batteryArr[i].robotID;
+      if (!seenIDs.includes(ID)) {
+        seenIDs.push(ID);
+        const battery = calcBatteryPercent(batteryArr[i].battery);
+        if (battery >= 70) {
+          high++;
+        } else if (battery >= 40) {
+          mid++;
+        } else if (battery >= 0) {
+          low++;
         }
       }
     }
@@ -49,6 +50,18 @@ export default function OverviewSection() {
   //     updateBatteryData();
   //   }, 3000);
   // });
+
+  useEffect(() => {
+    if (isTimeToUpdate) {
+      setTimeToUpdate(false);
+
+      getUpdatedBattery();
+
+      setTimeout(() => {
+        setTimeToUpdate(true);
+      }, 10000);
+    }
+  }, [isTimeToUpdate]);
 
   return (
     <div className={dashboardStyles.section}>

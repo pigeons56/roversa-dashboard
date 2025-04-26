@@ -4,15 +4,15 @@ import pageStyles from "./page.module.css";
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useState, useEffect } from "react";
 import { useCookies } from "next-client-cookies";
-import { calcBatteryPercent } from "@/app/dashboard/helper-functions/calc-battery";
-import Link from "next/link";
-import RobotPopup from "./robot-popup";
-import { useSearchParams } from "next/navigation";
+import {
+  calcBatteryPercent,
+  fetchRobotBattery,
+  fetchAllLatestRobotBatteryInClass,
+} from "@/app/dashboard/battery-functions";
 import { useRouter } from "next/navigation";
 
 export default function RobotSection() {
   const cookies = useCookies();
-  const currentClass = cookies.get("currentClass");
   const [data, setData] = useState<Robot[]>([]);
   const [isLoading, setLoading] = useState(true);
   const router = useRouter();
@@ -25,11 +25,8 @@ export default function RobotSection() {
     cardColor: string;
   };
 
-  async function fetchAllRobotBattery() {
-    const data = await fetch("/api/dashboard/robot/battery/by-class", {
-      method: "GET",
-    });
-    const batteryArr = (await data.json()).battery;
+  async function mapRobotBattery() {
+    const batteryArr = await fetchAllLatestRobotBatteryInClass();
     let batteryMap = new Map<number, number>();
     for (let i = 0; i < batteryArr.length; i++) {
       const key = batteryArr[i].robotID;
@@ -41,17 +38,8 @@ export default function RobotSection() {
     return batteryMap;
   }
 
-  async function fetchRobotBattery() {
-    const data = await fetch("/api/dashboard/robot/battery/by-id", {
-      method: "GET",
-    });
-    const battery = (await data.json()).battery;
-    const batteryPercent = calcBatteryPercent(battery);
-    return batteryPercent;
-  }
-
   async function updateAllCards() {
-    const batteryMap = await fetchAllRobotBattery();
+    const batteryMap = await mapRobotBattery();
     let newData: Robot[] = [];
     for (let i = 0; i < data.length; i++) {
       const battery = batteryMap.get(data[i].ID)!;

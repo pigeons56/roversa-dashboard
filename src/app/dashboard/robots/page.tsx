@@ -4,7 +4,10 @@ import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { calcBatteryPercent } from "@/app/dashboard/helper-functions/calc-battery";
+import {
+  calcBatteryPercent,
+  fetchRobotBattery,
+} from "@/app/dashboard/battery-functions";
 import RobotPopup from "./robot-popup";
 import Link from "next/link";
 
@@ -21,15 +24,6 @@ export default function Robots() {
     assignedClasses: string[];
     assignedStudents: string[];
   };
-
-  async function fetchRobotBattery() {
-    const data = await fetch("/api/dashboard/robot/battery/by-id", {
-      method: "GET",
-    });
-    const battery = (await data.json()).battery;
-    const batteryPercent = calcBatteryPercent(battery);
-    return batteryPercent;
-  }
 
   async function fetchRobotClasses() {
     const data = await fetch("/api/dashboard/robot/classes", {
