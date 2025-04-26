@@ -86,7 +86,6 @@ export default function Students() {
     const studentData = await fetchAllStudentData();
     for (let i = 0; i < studentData.length; i++) {
       await addStudentToTable(studentData[i]);
-      console.log(studentData[i].firstName, i, studentData.length);
     }
   }
 
