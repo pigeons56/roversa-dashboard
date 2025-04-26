@@ -51,6 +51,7 @@ export default function Classes() {
   if (data.length === 0) {
     return (
       <div className={pageStyles.classes_section}>
+        <div className={pageStyles.label_white}>My Classes List</div>
         <div className={pageStyles.label_yellow}>No classes yet!</div>
         {createClass && <ClassPopup setLoading={setLoading} />}
         <Link
@@ -66,6 +67,7 @@ export default function Classes() {
 
   return (
     <div className={pageStyles.classes_section}>
+      <div className={pageStyles.label_white}>My Classes List</div>
       {data.map((d, i) => (
         <button
           onClick={() => handleClick(d)}

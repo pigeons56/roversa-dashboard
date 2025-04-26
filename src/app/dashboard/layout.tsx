@@ -55,7 +55,6 @@ export default function SidebarLayout({
             My Robots
           </button>
         </div>
-        <div className={pageStyles.label_white}>My Classes List</div>
         <Classes />
       </div>
       <div className={pageStyles.content}>{children}</div>
