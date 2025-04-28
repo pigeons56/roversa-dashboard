@@ -1,5 +1,8 @@
 export function calcBatteryPercent(battery: number) {
-  const batteryDecimal = (battery - 3.4) / 0.25;
+  const maxBattery = 5.2;
+  const minBattery = 3.3;
+  const batteryRange = maxBattery - minBattery;
+  const batteryDecimal = (battery - minBattery) / batteryRange;
   let batteryPercent = batteryDecimal * 100;
   if (batteryPercent > 100) batteryPercent = 100;
   if (batteryPercent < 0) batteryPercent = 0;
