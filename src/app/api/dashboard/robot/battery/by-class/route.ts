@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getBatteryByClass } from "@/app/db/update";
+import { getBatteryByClass } from "@/app/db/robots";
 
 export async function GET() {
   const cookieStore = await cookies();

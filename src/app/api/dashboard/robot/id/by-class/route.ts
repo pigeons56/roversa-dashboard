@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { getRobotIDsByClass, addRobotToClass } from "@/app/db/update";
+import { getRobotIDsByClass, addRobotToClass } from "@/app/db/robots";
 
 export async function GET() {
   const cookieStore = await cookies();

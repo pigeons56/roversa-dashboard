@@ -8,7 +8,7 @@ import {
   calcBatteryPercent,
   fetchRobotBattery,
   fetchAllLatestRobotBatteryInClass,
-} from "@/app/dashboard/battery-functions";
+} from "@/app/dashboard/battery";
 import { useRouter, useSearchParams } from "next/navigation";
 import AddRobotPopup from "./add-robot-popup";
 import Link from "next/link";

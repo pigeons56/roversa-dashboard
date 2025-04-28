@@ -3,7 +3,7 @@
 import dashboardStyles from "@/app/dashboard/dashboard.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
-import { calcBatteryPercent } from "@/app/dashboard/battery-functions";
+import { calcBatteryPercent } from "@/app/dashboard/battery";
 
 export default function Robot() {
   const cookies = useCookies();

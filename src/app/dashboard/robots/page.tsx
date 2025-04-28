@@ -5,7 +5,7 @@ import pageStyles from "./page.module.css";
 import { useCookies } from "next-client-cookies";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetchRobotBattery } from "@/app/dashboard/battery-functions";
+import { fetchRobotBattery } from "@/app/dashboard/battery";
 import RobotPopup from "./robot-popup";
 import Link from "next/link";
 

@@ -6,7 +6,7 @@ import BatteryChart from "./battery-chart";
 import {
   calcBatteryPercent,
   fetchAllLatestRobotBatteryInClass,
-} from "../../battery-functions";
+} from "../../battery";
 
 export default function OverviewSection() {
   const [data, setData] = useState<ChartData[]>([]);

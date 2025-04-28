@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getClasses, addClass } from "../../../db/update";
+import { getClasses, addClass } from "../../../db/classes";
 import { cookies } from "next/headers";
 
 export async function GET() {

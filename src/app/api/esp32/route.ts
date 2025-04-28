@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { addRobotOutput } from "@/app/db/update";
+import { addRobotOutput } from "@/app/db/robots";
 
 export async function POST(request: Request) {
   console.log("POST from esp32 received.");
